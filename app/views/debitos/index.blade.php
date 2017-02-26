@@ -32,16 +32,26 @@
                 <thead>
                     <th>Nome</th>
                     <th>CPF</th>
+                    <th>Valor da parcela</th>
+                    <th align="center">Quantidade</th>
                     <th>Ações</th>
                 </thead>
                 <tbody>
-
-
+                @foreach($debitos as $debito)
+                <tr> 
+                    <td>{{{ $debito->cliente }}}</td>
+                    <td>{{{ $debito->cpf }}}</td>
+                    <td>R$ {{ formataMoeda($debito->valor_debito) }}</td>
+                    <td align="center">{{{ $debito->quantidade_parcelas }}}</td>
+                    <td></td>
+                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
 
         <div class="text-center">
+            {{ $debitos->links() }}
         </div>
 
 @stop

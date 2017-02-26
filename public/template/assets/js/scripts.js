@@ -44,23 +44,33 @@ $(function(){
 	*/
 	$('#cpf').mask('00000000000');
 
+	$('.monetario').mask('000.000.000.000.000,00', {reverse: true});
+
 	$('#cep, #_cep').mask('00000-000', {clearIfNotMatch: true});
 
 	$('#contato, #telefone').mask('(00) Z0000-0000', {
-				translation: {
-					'Z': {
-					pattern: /[9]/, optional: true
-					}
-				},
-				clearIfNotMatch: true
+		translation: {
+			'Z': {
+			pattern: /[9]/, optional: true
+			}
+		},
+		clearIfNotMatch: true
 	});
 
-	$('#data_nascimento, #data_emissao, #data_agendamento').mask('AY/BY/YYYY', {clearIfNotMatch: true,
-															'translation': {
-																A: {pattern: /[0-3]/},
-																B: {pattern: /[0-1]/},
-																Y: {pattern: /[0-9]/}
-															 }
-															});
+	$('#data_nascimento, #data_emissao, #data_agendamento, .data').mask('AY/BY/YYYY', {
+		clearIfNotMatch: true,
+			'translation': {
+				A: {pattern: /[0-3]/},
+				B: {pattern: /[0-1]/},
+				Y: {pattern: /[0-9]/}
+			 }
+	});
 
+	$('.uppercase').keyup(function(){
+        $(this).val($(this).val().toUpperCase());
+    });
+
+    $('.lowercase').keyup(function(){
+        $(this).val($(this).val().toLowerCase());
+    });
 })

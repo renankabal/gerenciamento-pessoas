@@ -50,4 +50,12 @@ class HelpersController extends \BaseController {
 
 		return $date;
 	}
+
+	// Formata valores decimais para o formato float
+	public function formataFloat($valor) {
+		$valor = str_replace(".", "", $valor);
+		$valor = str_replace(",", ".", $valor);
+		return floatval($valor);
+	}
+
 }

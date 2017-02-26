@@ -11,20 +11,21 @@ class DebitosController extends \HelpersController {
     {
         $busca = Input::get('busca');
 
-        $clientes = Debito::select('*');
+        $debitos = Debito::select('*', 'clientes.nome as cliente', 'clientes.cpf')
+                    ->leftJoin('clientes', 'clientes.id', '=', 'debitos.cliente_id');
         
         if($busca){
             if(is_numeric($busca)){
-                $clientes = $clientes->whereRaw("cpf='$busca'");
+                $debitos = $debitos->whereRaw("clientes.cpf='$busca'");
             }else{
-                $clientes = $clientes->where('nome', 'ilike', "%".$busca."%");
+                $debitos = $debitos->where('clientes.nome', 'ilike', "%".$busca."%");
             }
         }
 
-        $clientes = $clientes->orderBy('nome');
-        $clientes = $clientes->paginate(10);
-
-        return View::make('debitos.index', compact('clientes'));
+        $debitos = $debitos->orderBy('clientes.nome');
+        $debitos = $debitos->paginate(10);
+        // de($debitos->toArray());
+        return View::make('debitos.index', compact('debitos'));
     }
 
     /**
@@ -33,7 +34,9 @@ class DebitosController extends \HelpersController {
      */
     public function create()
     {
+        $clientes = Cliente::orderBy('nome')->lists('id', 'nome');
 
+        return View::make('debitos.create', compact('clientes'));
     }
 
     /**
@@ -43,7 +46,62 @@ class DebitosController extends \HelpersController {
      */
     public function store()
     {
+        $inputs = Input::all();
 
+        $validator = Validator::make($inputs, Debito::$rules);
+
+
+        if ($validator->fails())
+        {
+            # Mescla os arrays de erros
+            $errors = $validator->errors();
+
+            return Redirect::action('DebitosController@create')->withErrors($errors)->withInput($inputs);
+        }
+
+        $inputs['data_debito']  = $this->handleDate($inputs['data_debito']);
+        $inputs['valor_debito'] = $this->formataFloat($inputs['valor_debito']);
+
+        DB::beginTransaction();
+
+        $debito = new Debito($inputs);
+
+        if($debito->save()){
+            list($ano_debito, $mes_debito, $dia_debito) = explode("-",$debito->data_debito);
+
+            $parcelas=0;
+
+            for($i=1;$i<=Input::get('quantidade_parcelas');$i++){
+                $numero_parcela=1;
+
+                $parcela = new Parcela;
+                $parcela->debito_id       = $debito->id;
+                $parcela->parcela         = $i.'/'.$debito->quantidade_parcelas;
+                $parcela->total_parcelas  = $debito->quantidade_parcelas;
+                $parcela->valor_parcela   = $debito->valor_debito;
+                $parcela->descricao       = $debito->nome;
+
+                $data_vencimento = $ano_debito.'-'.$mes_debito.'-'.$dia_debito;
+                $parcela->data_vencimento=$data_vencimento;
+                
+                ### LÓGICA PARA CADASTRO DA DATA DE VENCIMENTO
+                ### SE O MÊS FOR DEZEMBRO PASSA PARA O ANO SEGUINTE, MÊS DE JANEIRO
+                if ($mes_debito==12)
+                {
+                    $mes_debito=0;
+                    $ano_debito++;
+                }
+                
+                ### CONCATENA O MÊS DA PARCELA
+                $mes_debito++;
+
+                $numero_parcela++;
+                if($parcela->save()) $parcelas++;
+            }
+        DB::commit();  
+        }
+
+        return Redirect::action('DebitosController@index')->with('mensagem', 'Débito criado com sucesso.');
     }
 
     /**

@@ -22,8 +22,7 @@ class Debito extends Eloquent {
         'valor_debito',
         'quantidade_parcelas',
         'debito_finalizado',
-        'cliente_id',
-        'ano'
+        'cliente_id'
         ];
 
     /*
@@ -36,8 +35,7 @@ class Debito extends Eloquent {
         'data_debito'        => 'required|date_format:d/m/Y',
         'valor_debito'       => 'required',
         'quantidade_parcelas'=> 'required',
-        'cliente_id'         => 'required',
-        'ano'                => 'required|date_format:Y'
+        'cliente_id'         => 'required'
     ];
 
     /*

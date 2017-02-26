@@ -16,11 +16,13 @@ class Cliente extends Eloquent {
 	*/
 	protected $fillable = [
 		'nome',
+		'matricula',
 		'cpf',
 		'rg',
 		'orgao_expedidor',
 		'data_emissao',
 		'data_nascimento',
+		'associado',
 		'sexo',
 		'email',
 		'profissao',

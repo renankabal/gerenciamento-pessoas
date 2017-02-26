@@ -13,6 +13,7 @@ class ClienteTableSeeder extends Seeder {
         DB::table('clientes')->delete();
 
         Cliente::create(['nome'				=> 'ROSIMERE DA SILVA',
+        				 'matricula'        => 12345678,
 						 'email'			=> 'rosimere@gmail.com',
 						 'cpf' 				=> '85296374125',
 						 'rg' 				=> '741963',
@@ -26,6 +27,7 @@ class ClienteTableSeeder extends Seeder {
 	 	]);
 
 		Cliente::create(['nome'				=> 'MARIETA SEVERO',
+        				 'matricula'        => 87654321,
 						 'email'			=> 'marieta@gmail.com',
 						 'cpf' 				=> '96787413951',
 						 'rg' 				=> '951863',

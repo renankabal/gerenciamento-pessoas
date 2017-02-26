@@ -14,7 +14,8 @@ class Clientes extends Migration {
 	{
 		Schema::create('clientes', function($table)
 		{
-			$table->increments('id');
+			$table->increments('id');			
+			$table->string('matricula', 8);
 			$table->string('nome', 150);			
 			$table->string('foto')->nullable();
 			$table->string('cpf', 11)->unique();
@@ -22,6 +23,7 @@ class Clientes extends Migration {
 			$table->string('orgao_expedidor', 150)->nullable();
 			$table->date('data_emissao')->nullable();
 			$table->date('data_nascimento');
+			$table->date('associado')->nullable();
 			$table->string('sexo', 1);
 			$table->string('profissao', 150)->nullable();
 			$table->string('email', 150)->nullable();
