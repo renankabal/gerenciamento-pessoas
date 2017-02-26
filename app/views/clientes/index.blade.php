@@ -73,10 +73,11 @@
 <script>
 	$(document).delegate('.visualizar_relatorios', 'click', function(e)
     {
-        var pessoa_nome        = $(this).attr('cliente-nome');
-        var pessoa_id = $(this).attr('cliente-id');
-
-        $('[name=pessoaNome]').val(pessoa_nome);
+        var pessoa_nome  = $(this).attr('cliente-nome');
+        var pessoa_id    = $(this).attr('cliente-id');
+        $('#nomePessoa').remove();
+        
+        $('#pessoaNome').append('<span id="nomePessoa">'+pessoa_nome+'</span>');
         $('[name=pessoaId]').val(pessoa_id);
         
         $("#relatoriosCliente").modal().show();
