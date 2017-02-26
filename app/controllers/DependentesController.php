@@ -9,11 +9,21 @@ class DependentesController extends \HelpersController {
 	 */
 	public function index()
 	{
+		$busca =  Input::get('busca');
+
 		$dependentes = Dependente::select('dependentes.nome', 'dependentes.id', 'dependentes_tipos.nome as tipo', 'dependentes.cpf', 'clientes.nome as cliente')
-							->leftJoin('clientes', 'clientes.id', '=', 'dependentes.cliente_id')
-							->leftJoin('dependentes_tipos', 'dependentes_tipos.id', '=', 'dependentes.dependente_tipo_id')
-							->orderBy('nome')
-							->paginate(10);
+								->leftJoin('clientes', 'clientes.id', '=', 'dependentes.cliente_id')
+								->leftJoin('dependentes_tipos', 'dependentes_tipos.id', '=', 'dependentes.dependente_tipo_id');
+		if($busca){
+            if(is_numeric($busca)){
+                $dependentes=$dependentes->whereRaw("dependentes.cpf='$busca'");
+            }else{
+                $dependentes=$dependentes->where('dependentes.nome', 'LIKE', "%".$busca."%");
+            }
+        }
+
+		$dependentes=$dependentes->orderBy('nome')->paginate(10);
+
 		return View::make('dependentes.index', compact('dependentes'));
 	}
 
@@ -124,23 +134,6 @@ class DependentesController extends \HelpersController {
 		$dependente->delete();
 
 		return Redirect::action('DependentesController@index')->with('mensagem', 'Dependente excluído com sucesso.');
-	}
-
-	/**
-	 * Mostra resultados encontrados pela busca
-	 * @return Response
-	 */
-	public function find()
-	{
-		$busca = Input::get('busca');
-		$dependentes = Dependente::select('dependentes.nome', 'dependentes.id', 'dependentes_tipos.nome as tipo', 'dependentes.cpf', 'clientes.nome as cliente')
-								->leftJoin('clientes', 'clientes.id', '=', 'dependentes.cliente_id')
-								->leftJoin('dependentes_tipos', 'dependentes_tipos.id', '=', 'dependentes.dependente_tipo_id')
-								->where('dependentes.nome', 'LIKE', "%$busca%")
-								->orWhere('dependentes.cpf', $busca)
-								->orderBy('dependentes.nome')->paginate(10);
-
-		return View::make('dependentes.index', compact('dependentes'));
 	}
 
 }

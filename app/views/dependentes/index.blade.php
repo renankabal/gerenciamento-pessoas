@@ -7,14 +7,25 @@
 		<li><a href="{{action('DependentesController@index')}}">Dependentes</a></li>
 	</ol>
 
+	{{-- Filtro de nome/cpf da pessoa --}}
+    <?php
+    	$pesquisa2 = Input::get('busca');
+    ?>
 	<div class="row">
 		<div class="col-md-12">
-			<form method="get" action="{{ action('DependentesController@find') }}">
+			<form method="get" action="{{ action('DependentesController@index') }}">
 				<div class="input-group">
-				  <input type="text" id="busca" name="busca" class="form-control" placeholder="Busca" required>
-				  <span class="input-group-btn">
-				    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-				  </span>
+				    <input type="text" id="busca" name="busca" class="form-control" placeholder="Busca por nome ou cpf" value="{{ $pesquisa2 }}">
+				    <div class="input-group-btn">
+				    	@if ($pesquisa2)
+					    	<button type="submit" class="btn btn-default" id="form-pesquisa-limpar">
+					    		<i class="fa fa-times"></i> Limpar
+					    	</button>
+				    	@endif
+				    	<button type="submit" class="btn btn-default">
+				    		<i class="glyphicon glyphicon-search"></i> Buscar
+				    	</button>
+				    </div>
 				</div>
 			</form>
 		</div>
@@ -76,3 +87,10 @@
 		</div>
 
 @stop
+{{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
+<script>
+    $(document).delegate('#form-pesquisa-limpar', 'click', function(e)
+    {
+    	$('#busca').val("");
+    });
+</script>

@@ -16,15 +16,14 @@ class Debito extends Eloquent {
     */
     protected $fillable = [
         'nome',
-        'cpf',
-        'rg',
-        'orgao_expedidor',
-        'data_emissao',
-        'data_nascimento',
-        'sexo',
-        'email',
-        'profissao',
-        'estado_civil'
+        'descricao',
+        'observacao',
+        'data_debito',
+        'valor_debito',
+        'quantidade_parcelas',
+        'debito_finalizado',
+        'cliente_id',
+        'ano'
         ];
 
     /*
@@ -33,15 +32,12 @@ class Debito extends Eloquent {
      *
     */
     public static $rules = [
-        'nome'              => 'required',
-        'cpf'               => 'required|min:11|max:11|unique:clientes,cpf',
-        'rg'                => 'required|unique:clientes,rg',
-        'orgao_expedidor'   => 'required',
-        'data_emissao'      => 'required|date_format:d/m/Y',
-        'data_nascimento'   => 'required|date_format:d/m/Y',
-        'sexo'              => 'required',
-        'email'             => 'unique:clientes,email',
-        'estado_civil'      => 'required'
+        'nome'               => 'required',
+        'data_debito'        => 'required|date_format:d/m/Y',
+        'valor_debito'       => 'required',
+        'quantidade_parcelas'=> 'required',
+        'cliente_id'         => 'required',
+        'ano'                => 'required|date_format:Y'
     ];
 
     /*
@@ -50,19 +46,14 @@ class Debito extends Eloquent {
      *
     */
 
-    public function enderecoCorrespondencia()
+    public function parcela()
     {
-        return $this->hasOne('EnderecoCorrespondencia');
+        return $this->hasOne('Parcela');
     }
 
-    public function telefone()
+    public function clientes()
     {
-        return $this->hasOne('Telefone');
-    }
-
-    public function dependentes()
-    {
-        return $this->hasMany('Dependente');
+        return $this->hasMany('Cliente');
     }
 
 }
