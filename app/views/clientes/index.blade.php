@@ -41,13 +41,15 @@
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
+                    <th width="5%">Matricula</th>
 					<th width="60%">Nome</th>
 					<th width="20%">CPF</th>
-					<th width="20%">Ações</th>
+					<th width="15%">Ações</th>
 				</thead>
 				<tbody>
 				@forelse ($clientes as $cliente)
 					<tr>
+                        <td>{{ $cliente->matricula }}</td>
 						<td>{{ $cliente->nome }}</td>
 						<td>{{ $cliente->cpf }}</td>
 						<td>

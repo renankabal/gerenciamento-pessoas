@@ -45,6 +45,8 @@ class ClientesController extends \HelpersController {
 	 */
 	public function store()
 	{
+		$matricula = substr(hexdec(uniqid()), -8);
+
 		$inputCliente = Input::get('cliente');
 		$inputEnderecoCorresp = Input::get('endereco');
 		$inputTelefone = Input::get('telefone');
@@ -68,8 +70,10 @@ class ClientesController extends \HelpersController {
 		}
 
 		//Manipula a data para ser inserida no banco na forma correta
-		$inputCliente['data_emissao'] = $this->handleDate($inputCliente['data_emissao']);
+		$inputCliente['data_emissao']    = $this->handleDate($inputCliente['data_emissao']);
 		$inputCliente['data_nascimento'] = $this->handleDate($inputCliente['data_nascimento']);
+		$inputCliente['associado']       = $this->handleDate($inputCliente['associado']);
+		$inputCliente['matricula']       = $matricula;
 
 		$cliente = new Cliente(array_filter($inputCliente));
 		$endereco = new EnderecoCorrespondencia($inputEnderecoCorresp);

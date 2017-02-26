@@ -26,10 +26,21 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="dados-pessoais">
-                        <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
-                            <label for="nome">Nome</label>
-                            <input type="text" class="form-control" id="nome" name="cliente[nome]" value="{{ Request::old('nome', $cliente->nome) }}">
-                            {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control uppercase" id="nome" name="cliente[nome]" value="{{ Request::old('nome', $cliente->nome) }}">
+                                    {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group {{ $errors->has('associado') ? 'has-error' : '' }}">
+                                    <label for="associado">Data de Associado</label>
+                                    <input type="text" class="form-control data " id="associado" name="cliente[associado]" value="{{ Request::old('associado', date('d/m/Y', strtotime($cliente->associado))) }}">
+                                    {{ $errors->first('associado', '<span class="help-block">:message</span>') }}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
@@ -49,7 +60,7 @@
                             <div class="col-md-3">
                                 <div class="form-group {{ $errors->has('orgao_expedidor') ? 'has-error' : '' }}">
                                     <label for="orgao_expedidor">Expedidor</label>
-                                    <input type="text" class="form-control" id="orgao_expedidor" name="cliente[orgao_expedidor]" value="{{ Request::old('orgao_expedidor', $cliente->orgao_expedidor) }}">
+                                    <input type="text" class="form-control uppercase" id="orgao_expedidor" name="cliente[orgao_expedidor]" value="{{ Request::old('orgao_expedidor', $cliente->orgao_expedidor) }}">
                                     {{ $errors->first('orgao_expedidor', '<span class="help-block">:message</span>') }}
                                 </div>
                             </div>
@@ -79,13 +90,13 @@
 
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="email">E-mail</label>
-                            <input type="email" class="form-control" id="email" name="cliente[email]" value="{{ Request::old('email', $cliente->email) }}">
+                            <input type="email" class="form-control lowercase" id="email" name="cliente[email]" value="{{ Request::old('email', $cliente->email) }}">
                             {{ $errors->first('email', '<span class="help-block">:message</span>') }}
                         </div>
 
                         <div class="form-group {{ $errors->has('profissao') ? 'has-error' : '' }}">
                             <label for="profissao">Profissão</label>
-                            <input type="profissao" class="form-control" id="profissao" name="cliente[profissao]" value="{{ Request::old('profissao', $cliente->profissao) }}">
+                            <input type="profissao" class="form-control uppercase" id="profissao" name="cliente[profissao]" value="{{ Request::old('profissao', $cliente->profissao) }}">
                             {{ $errors->first('profissao', '<span class="help-block">:message</span>') }}
                         </div>
 
@@ -135,7 +146,7 @@
 
                                 <div class="form-group {{ $errors->has('logradouro') ? 'has-error' : '' }}">
                                     <label for="logradouro">Logradouro</label>
-                                    <input type="text" class="form-control" id="logradouro" name="endereco[logradouro]" value="{{ Request::old('logradouro', $cliente->enderecoCorrespondencia->logradouro) }}">
+                                    <input type="text" class="form-control uppercase" id="logradouro" name="endereco[logradouro]" value="{{ Request::old('logradouro', $cliente->enderecoCorrespondencia->logradouro) }}">
                                     {{ $errors->first('logradouro', '<span class="help-block">:message</span>') }}
                                 </div>
 
@@ -143,14 +154,14 @@
                                     <div class="col-md-4">
                                         <div class="form-group {{ $errors->has('numero') ? 'has-error' : '' }}">
                                             <label for="numero">Número</label>
-                                            <input type="text" class="form-control" id="numero" name="endereco[numero]" value="{{ Request::old('numero', $cliente->enderecoCorrespondencia->numero) }}">
+                                            <input type="text" class="form-control uppercase" id="numero" name="endereco[numero]" value="{{ Request::old('numero', $cliente->enderecoCorrespondencia->numero) }}">
                                             {{ $errors->first('numero', '<span class="help-block">:message</span>') }}
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group {{ $errors->has('referencia') ? 'has-error' : '' }}">
                                             <label for="referencia">Referência</label>
-                                            <input type="text" class="form-control" id="referencia" name="endereco[referencia]" value="{{ Request::old('referencia', $cliente->enderecoCorrespondencia->referencia) }}">
+                                            <input type="text" class="form-control uppercase" id="referencia" name="endereco[referencia]" value="{{ Request::old('referencia', $cliente->enderecoCorrespondencia->referencia) }}">
                                             {{ $errors->first('referencia', '<span class="help-block">:message</span>') }}
                                         </div>
                                     </div>
@@ -158,19 +169,19 @@
 
                                 <div class="form-group {{ $errors->has('bairro') ? 'has-error' : '' }}">
                                     <label for="bairro">Bairro</label>
-                                    <input type="text" class="form-control" id="bairro" name="endereco[bairro]" value="{{ Request::old('bairro', $cliente->enderecoCorrespondencia->bairro) }}">
+                                    <input type="text" class="form-control uppercase" id="bairro" name="endereco[bairro]" value="{{ Request::old('bairro', $cliente->enderecoCorrespondencia->bairro) }}">
                                     {{ $errors->first('bairro', '<span class="help-block">:message</span>') }}
                                 </div>
 
                                 <div class="form-group {{ $errors->has('cidade') ? 'has-error' : '' }}">
                                     <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" id="cidade" name="endereco[cidade]" value="{{ Request::old('cidade', $cliente->enderecoCorrespondencia->cidade) }}">
+                                    <input type="text" class="form-control uppercase" id="cidade" name="endereco[cidade]" value="{{ Request::old('cidade', $cliente->enderecoCorrespondencia->cidade) }}">
                                     {{ $errors->first('cidade', '<span class="help-block">:message</span>') }}
                                 </div>
 
                                 <div class="form-group {{ $errors->has('estado') ? 'has-error' : '' }}">
                                     <label for="estado">Estado</label>
-                                    <input type="text" class="form-control" id="estado" name="endereco[estado]" value="{{ Request::old('estado', $cliente->enderecoCorrespondencia->estado) }}">
+                                    <input type="text" class="form-control uppercase" id="estado" name="endereco[estado]" value="{{ Request::old('estado', $cliente->enderecoCorrespondencia->estado) }}">
                                     {{ $errors->first('estado', '<span class="help-block">:message</span>') }}
                                 </div>
                             </div>
