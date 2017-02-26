@@ -40,6 +40,15 @@
                     </li>
                 </ul>
             </li>
+
+            <li {{ (Request::is('*debitos*') ? 'class="active"' : '') }}>
+                <a href="#"><i class="fa fa-money"></i>Financeiro <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a {{ (Request::is('*debitos*') ? 'class="active-menu"' : '') }} href="{{action('DebitosController@index')}}"><i class="fa fa-address-card-o"></i>Débitos</a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <a href="#"><i class="fa fa-user"></i>Usuarios <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

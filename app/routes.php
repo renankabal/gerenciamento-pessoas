@@ -43,6 +43,8 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('/dependentes/find/', 'DependentesController@find');
 	    Route::resource('/perfis', 'PerfilController');
 	    Route::resource('/usuarios', 'UsuarioController');
+	    Route::resource('/debitos', 'DebitosController');
+	    Route::resource('/parcelas', 'ParcelasController');
 
 	    Route::resource('/fotos', 'FotosController');
 
