@@ -45,7 +45,7 @@
 
             <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
                 <label for="cpf">CPF</label>
-                <input type="text" class="form-control" id="cpf" name="cpf" value="{{ $errors->has('cpf') ? Request::old('cpf') : $dependente->cpf }}">
+                <input type="text" class="form-control cpf" id="cpf" name="cpf" value="{{ $errors->has('cpf') ? Request::old('cpf') : $dependente->cpf }}">
                 {{ $errors->first('cpf', '<span class="help-block">:message</span>') }}
             </div>
 
