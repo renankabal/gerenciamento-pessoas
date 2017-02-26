@@ -49,6 +49,7 @@
                     </li>
                 </ul>
             </li>
+            @if(Auth::user()->perfil_id == 1)
             <li>
                 <a href="#"><i class="fa fa-user"></i>Usuarios <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -60,6 +61,7 @@
                     </li>
                 </ul>
             </li>
+            @endif
             <li>
                 <a href="{{ url('sair') }}"><i class="fa fa-sign-out"></i>Sair</a>
             </li>

@@ -19,10 +19,10 @@ $(function(){
 				success: function(json) {
 					console.log(json);
 					$('#gif-loading').css('display', 'none');
-					$('#logradouro').val(json.logradouro);
-					$('#bairro').val(json.bairro);
-					$('#cidade').val(json.localidade);
-					$('#estado').val(json.uf);
+					$('#logradouro').val(json.logradouro.toUpperCase());
+					$('#bairro').val(json.bairro.toUpperCase());
+					$('#cidade').val(json.localidade.toUpperCase());
+					$('#estado').val(json.uf.toUpperCase());
 
 					$('#msg-cep').css('display', 'none');
 				},

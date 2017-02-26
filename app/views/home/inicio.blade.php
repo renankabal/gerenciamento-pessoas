@@ -22,12 +22,12 @@
                 </a>
             </div>
             <div class="col-md-6">
-                {{-- <a href="{{action('CobrancaController@index')}}"> --}}
+                <a href="{{action('DebitosController@index')}}">
                     <div class="main-box mb-branco">
                         <img src="icones/grandes/folder_full.png" width="50%">
                         <h5>Cobrança</h5>
                     </div>
-                {{-- </a>                 --}}
+                </a>                
             </div>
         </div>
         {{-- Botoes da segunda linha --}}
