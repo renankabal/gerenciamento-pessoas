@@ -15,7 +15,6 @@ class Cliente extends Eloquent {
 	 * http://laravel.com/docs/4.2/eloquent#mass-assignment
 	*/
 	protected $fillable = [
-		'oportunidade_id',
 		'nome',
 		'cpf',
 		'rg',
@@ -34,7 +33,6 @@ class Cliente extends Eloquent {
 	 *
 	*/
 	public static $rules = [
-		'oportunidade_id'	=> 'required',
 		'nome'				=> 'required',
 		'cpf' 				=> 'required|min:11|max:11|unique:clientes,cpf',
 		'rg'				=> 'required|unique:clientes,rg',
@@ -60,11 +58,6 @@ class Cliente extends Eloquent {
 	public function zona()
 	{
 		return $this->hasOne('Zona');
-	}
-
-	public function oportunidade()
-	{
-		return $this->belongsTo('Oportunidade');
 	}
 
 	public function cobrancas()

@@ -27,21 +27,6 @@ class EnderecosCorrespondenciaCobranca extends Migration {
             $table->timestamps();
         });
 
-		Schema::create('enderecos_cobrancas', function($table)
-        {
-            $table->increments('id');
-            $table->string('_cep', 9);
-            $table->string('_logradouro', 150);
-            $table->string('_numero', 150);
-            $table->string('_referencia')->nullable();
-            $table->string('_bairro', 200);
-            $table->string('_cidade', 200);
-            $table->string('_estado', 2);
-            $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->timestamps();
-        });
-
 	}
 
 	/**
@@ -52,7 +37,6 @@ class EnderecosCorrespondenciaCobranca extends Migration {
 	public function down()
 	{
 		Schema::drop('enderecos_correspondencias');
-		Schema::drop('enderecos_cobrancas');
 	}
 
 }

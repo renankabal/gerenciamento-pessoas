@@ -11,23 +11,19 @@ class UsuarioTableSeeder extends Seeder {
 	{
         #Apaga e povoa a tabela de usuarios
         DB::table('usuarios')->delete();
+        
         Usuario::create(array(
                 'email' => 'fantasmaapoi@gmail.com',
                 'senha' => Hash::make('senha'),
                 'nome'  => 'Renan Jhonatha',
                 'perfil_id'  => 1
         ));
+
         Usuario::create(array(
-                'email' => 'rodrigocalilo@hotmail.com',
+                'email' => 'fernando@gmail.com',
                 'senha' => Hash::make('senha'),
-                'nome'  => 'Rodrigo Calilo',
-                'perfil_id'  => 1
-        ));
-        Usuario::create(array(
-                'email' => 'marcelo@gmail.com',
-                'senha' => Hash::make('senha'),
-                'nome'  => 'Marcelo Sobrenome',
-                'perfil_id'  => 1
+                'nome'  => 'Luiz Fernando',
+                'perfil_id'  => 2
         ));
 	}
 

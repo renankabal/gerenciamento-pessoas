@@ -26,13 +26,7 @@
                         <div class="col-md-12">
                             <div class="form-group {{ $errors->has('oportunidade_id') ? 'has-error' : '' }}">
                                 <label for="oportunidade_id">Nome</label>
-                                <input type="hidden" id="nome" name="cliente[nome]" value="{{ Request::old('nome') }}">
-                                <select class="select2 form-control" id="oportunidade_id" name="cliente[oportunidade_id]" value="{{ Request::old('oportunidade_id') }}">
-                                    <option value="">Selecione</option>
-                                    @foreach($oportunidades as $nome => $id)
-                                    <option value="{{ $id }}" @if (Request::old('oportunidade_id') == $id) selected @endif>{{ $nome }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" id="nome" name="cliente[nome]" value="{{ Request::old('nome') }}">
                                 {{ $errors->first('oportunidade_id', '<span class="help-block">:message</span>') }}
                             </div>
 

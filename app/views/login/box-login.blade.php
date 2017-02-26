@@ -4,7 +4,7 @@
         'class'  => 'form-signin'
     )) }}
         <div align="center">
-            <img src="{{ asset('images/logo.png') }}" width="70%">
+            <img src="{{ asset('images/logo-sigep.png') }}" width="70%">
         </div>
         <br>
         <div class="input-group">

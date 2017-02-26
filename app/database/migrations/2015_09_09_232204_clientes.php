@@ -17,8 +17,6 @@ class Clientes extends Migration {
 			$table->increments('id');
 			$table->string('nome', 150);			
 			$table->string('foto')->nullable();
-			$table->integer('oportunidade_id')->unsigned();
-			$table->foreign('oportunidade_id')->references('id')->on('oportunidades');
 			$table->string('cpf', 11)->unique();
 			$table->string('rg')->unique()->nullable();
 			$table->string('orgao_expedidor', 150)->nullable();

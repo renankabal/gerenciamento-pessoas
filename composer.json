@@ -5,7 +5,6 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"kriansa/openboleto": "dev-master",
 		"thujohn/pdf": "^1.0"
 	},
 	"require-dev": {

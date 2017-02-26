@@ -29,34 +29,14 @@
             <li>
                 <a {{ (Request::is('*home') ? 'class="active-menu"' : '') }} href="{{action('HomeController@home')}}"><i class="fa fa-home"></i>Início</a>
             </li>
-            <li>
-                <a {{ (Request::is('*oportunidades*') ? 'class="active-menu"' : '') }} href="{{action('OportunidadesController@index')}}"><i class="fa fa-commenting-o"></i>Oportunidades</a>
-            </li>
-            <li>
-                <a {{ (Request::is('*homologacao*') ? 'class="active-menu"' : '') }} href="{{action('HomologacaoController@index')}}"><i class="fa fa-bullhorn"></i>Homologação</a>
-            </li> 
             <li {{ (Request::is('*clientes*') || Request::is('*dependentes*') ? 'class="active"' : '') }}>
-                <a href="#"><i class="fa fa-users"></i>Clientes <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-users"></i>Pessoas <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a {{ (Request::is('*clientes*') ? 'class="active-menu"' : '') }} href="{{action('ClientesController@index')}}"><i class="fa fa-bell"></i>Clientes</a>
+                        <a {{ (Request::is('*clientes*') ? 'class="active-menu"' : '') }} href="{{action('ClientesController@index')}}"><i class="fa fa-bell"></i>Pessoas</a>
                     </li>
                     <li>
                         <a {{ (Request::is('*dependentes*') ? 'class="active-menu"' : '') }} href="{{action('DependentesController@index')}}"><i class="fa fa-bell"></i>Dependentes</a>
-                    </li>
-                </ul>
-            </li>                    
-            <li>
-                <a href="#"><i class="fa fa-file-text-o"></i>Cobranças <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a {{ (Request::is('*cobrancas*') ? 'class="active-menu"' : '') }} href="#"><i class="fa fa-bell"></i>Cobranças</a>
-                    </li>
-                    <li>
-                        <a {{ (Request::is('*planos*') ? 'class="active-menu"' : '') }} href="{{action('PlanoController@index')}}"><i class="fa fa-circle-o"></i>Planos</a>
-                    </li>
-                    <li>
-                        <a {{ (Request::is('*zonas*') ? 'class="active-menu"' : '') }} href="{{action('ZonasController@index')}}"><i class="fa fa-code"></i>Zonas</a>
                     </li>
                 </ul>
             </li>

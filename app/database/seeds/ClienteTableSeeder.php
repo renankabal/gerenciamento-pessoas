@@ -11,10 +11,8 @@ class ClienteTableSeeder extends Seeder {
 	{
         #Apaga e povoa a tabela de clientes
         DB::table('clientes')->delete();
-        #Ao salvar uma oportunidade como cliente altera o status para nao exibir na lista de oportunidades novamente
-        Oportunidade::find(1)->update(['oportunidade_status_id' => 2]);
-        Cliente::create(['oportunidade_id' 	=> 1,
-						 'nome'				=> 'ROSIMERE DA SILVA',
+
+        Cliente::create(['nome'				=> 'ROSIMERE DA SILVA',
 						 'email'			=> 'rosimere@gmail.com',
 						 'cpf' 				=> '85296374125',
 						 'rg' 				=> '741963',
@@ -26,10 +24,8 @@ class ClienteTableSeeder extends Seeder {
 						 'email' 			=> 'cruzfsson@cruzfsson.com',
 						 'estado_civil' 	=> 'Solteiro'
 	 	]);
-        #Ao salvar uma oportunidade como cliente altera o status para nao exibir na lista de oportunidades novamente
-        Oportunidade::find(2)->update(['oportunidade_status_id' => 2]);
-		Cliente::create(['oportunidade_id' 	=> 2,
-						 'nome'				=> 'MARIETA SEVERO',
+
+		Cliente::create(['nome'				=> 'MARIETA SEVERO',
 						 'email'			=> 'marieta@gmail.com',
 						 'cpf' 				=> '96787413951',
 						 'rg' 				=> '951863',

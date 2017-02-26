@@ -5,7 +5,7 @@
 
 	<ol class="breadcrumb">
 		<li><a href="{{action('HomeController@home')}}">Principal</a></li>
-		<li><a href="{{action('ClientesController@index')}}">Clientes</a></li>
+		<li><a href="{{action('ClientesController@index')}}">Pessoas</a></li>
 	</ol>
 
 	<div class="row">
@@ -24,7 +24,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<a id="botao-novo" href="{{ action('ClientesController@create') }}" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Novo</a>
-			<h2><i class="fa fa-users"></i> Clientes</h2>
+			<h2><i class="fa fa-users"></i> Pessoas</h2>
 		</div>
 	</div>
 

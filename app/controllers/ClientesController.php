@@ -21,10 +21,8 @@ class ClientesController extends \HelpersController {
 	public function create()
 	{
 		$telefoneTipo = TelefoneTipo::get();
-		//Mostra apenas as oportunidades que tem seu status FINALIZADO.
-		$oportunidades = Oportunidade::where('oportunidade_status_id', 2)->lists('id', 'nome');
 
-		return View::make('clientes.create', compact('telefoneTipo', 'oportunidades'));
+		return View::make('clientes.create', compact('telefoneTipo'));
 	}
 
 	/**
