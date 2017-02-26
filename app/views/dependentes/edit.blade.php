@@ -21,7 +21,7 @@
         <div class="col-md-12">
 
             <div class="form-group {{ $errors->has('cliente_id') ? 'has-error' : '' }}">
-                <label for="_cpf">Cliente</label>
+                <label for="_cpf">Pessoa</label>
                 <input type="text" class="form-control" id="_data_nascimento" name="_nome" value="{{ $dependente->cliente->nome }}" disabled="disabled">
                 <input type="hidden" name="cliente_id" value="{{ $dependente->cliente->id }}">
                 {{ $errors->first('cliente_id', '<span class="help-block">:message</span>') }}
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
-                <label for="nome">Nome</label>
+                <label for="nome">Nome do dependente</label>
                 <input type="text" class="form-control" id="nome" name="nome" value="{{ $errors->has('nome') ? Request::old('nome') : $dependente->nome }}">
                 {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
             </div>

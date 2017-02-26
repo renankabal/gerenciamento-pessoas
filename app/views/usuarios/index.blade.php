@@ -38,15 +38,14 @@
 						</td>
 						<td>{{ $usuario->email }}</td>
 						<td>
-							<div class="btn-group btn-group-sm" role="group">
-								<a href="#" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="#" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar"><i class="glyphicon glyphicon-eye-open"></i></a>
-								<form class="pull-right" method="post" action="">
-									<input type="hidden" name="_method" value="DELETE">
-									<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}">
-									<button type="submit" class="btn btn-danger btn-sm excluir-item" data-toggle="tooltip" data-placement="top" title="Excluir"><i class="fa fa-trash-o"></i></button>
-								</form>
-							</div>
+							<div class="btn-group" role="group">
+                                <a type="button" href="#" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                                <a class="btn btn-danger" role="button" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </div>
 						</td>
 					</tr>
 				@endforeach

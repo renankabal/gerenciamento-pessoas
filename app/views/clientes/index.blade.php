@@ -51,11 +51,17 @@
 						<td>{{ $cliente->nome }}</td>
 						<td>{{ $cliente->cpf }}</td>
 						<td>
-							<div class="btn-group btn-group-sm" role="group">
-								<a href="{{ action('ClientesController@edit', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="{{ action('ClientesController@createDependente', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Incluir dependente"><i class="fa fa-users"></i></a>
-								<a class="btn btn-default visualizar_relatorios" cliente-id="{{ $cliente->id }}"  cliente-nome="{{ $cliente->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Documentos"><i class="fa fa-file-text-o"></i></a>
-							</div>
+                            <div class="btn-group" role="group">
+                                <a type="button" href="{{ action('ClientesController@edit', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                                <a type="button" href="{{ action('ClientesController@createDependente', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Incluir dependente">
+                                    <i class="fa fa-users"></i>
+                                </a>
+                                <a class="btn btn-default visualizar_relatorios" cliente-id="{{ $cliente->id }}"  cliente-nome="{{ $cliente->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Visualizar relatorios">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </div>
 						</td>
 					</tr>
 				@empty

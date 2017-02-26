@@ -4,6 +4,7 @@
         'class'  => 'form-signin'
     )) }}
         <div align="center">
+            <i class="fa fa-user-o" aria-hidden="true" style="font-size:70px;color: #2e3192;"></i><br>
             <img src="{{ asset('images/logo-sigep.png') }}" width="70%">
         </div>
         <br>

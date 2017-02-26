@@ -47,9 +47,11 @@
 						</td>
 						<td>{{{ $dependente->cpf }}}</td>
 						<td>
-							<div class="btn-group btn-group-sm" role="group">
-								<a href="{{ action('DependentesController@edit', $dependente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
-							</div>
+							<div class="btn-group" role="group">
+                                <a type="button" href="{{ action('DependentesController@edit', $dependente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                            </div>
 						</td>
 					</tr>
 

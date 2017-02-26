@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb">
   <li><a href="{{action('HomeController@home')}}">Principal</a></li>
-  <li><a href="{{action('ClientesController@index')}}">Clientes</a></li>
+  <li><a href="{{action('ClientesController@index')}}">Pessoas</a></li>
   <li class="active">Editar</li>
 </ol>
 
