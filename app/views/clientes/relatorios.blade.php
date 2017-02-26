@@ -3,17 +3,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Documentos do Cliente</h4>
+        <h4 class="modal-title">Documentos do Cliente <span id="pessoaNome"></span></h4>
       <div class="modal-body">
       </div>
+        <input type="hidden" name="pessoaId">
         <table class="table table-hover" width="100%">
           <tr class="info">
               <td width="95%">Nome</td>
               <td width="5%">Ação</td>
           </tr>
-          <tr>
+          <tr style="cursor:pointer" class="relatorio_pessoa" link="/home/carteirinha/">
               <td>Carteirinhas</td>
-              <td title="Visualizar"><a href="/carteirinha/2" target="_blank"><i class="fa fa-search"></i></a></td>
+              <td><i class="fa fa-search"></i></td>
           </tr>
         </table>
       </div>

@@ -46,9 +46,7 @@
 								<a href="{{ action('ClientesController@edit', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
 								<a href="{{ action('CrmController@createCrm', $cliente->oportunidade_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Cadastrar CRM"><i class="fa fa-arrow-right"></i></a>
 								<a href="{{ action('ClientesController@createDependente', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Incluir dependente"><i class="fa fa-users"></i></a>
-								
-
-								<a class="btn btn-default visualizar_relatorios" cliente-id="{{ $cliente->id }}"  role="button" data-toggle="tooltip" data-placement="top" title="Documentos"><i class="fa fa-file-text-o"></i></a>
+								<a class="btn btn-default visualizar_relatorios" cliente-id="{{ $cliente->id }}"  cliente-nome="{{ $cliente->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Documentos"><i class="fa fa-file-text-o"></i></a>
 							</div>
 						</td>
 					</tr>
@@ -71,17 +69,26 @@
 		</div>
 
 @stop
-
+{{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
 <script>
-	var pessoa_selecionada;
-
-	$(".visualizar_relatorios").click(function(e)
+	$(document).delegate('.visualizar_relatorios', 'click', function(e)
     {
-        pessoa_selecionada = $(this).attr('cliente-id');
+        var pessoa_nome        = $(this).attr('cliente-nome');
+        var pessoa_id = $(this).attr('cliente-id');
 
-        // $("#relatoriosCliente").modal().show();
-        console.log(pessoa_seleciionada);
+        $('[name=pessoaNome]').val(pessoa_nome);
+        $('[name=pessoaId]').val(pessoa_id);
+        
+        $("#relatoriosCliente").modal().show();
+
         e.preventDefault();
     });
 
+	// Função exibir os relatórios do cadastro de matrículas
+    $(document).delegate('.relatorio_pessoa', 'click', function(e)
+    {
+        var pessoa_selecionada = $('[name=pessoaId]').val();
+        var link = $(this).attr('link');
+        window.open(link+pessoa_selecionada);
+    });
 </script>
