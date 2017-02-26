@@ -25,7 +25,7 @@
                     <input type="text" class="form-control" id="_nome" name="_nome" value="{{ $cliente->nome }}" disabled="disabled">
                     <input type="hidden" id="cliente_id" name="cliente_id" value="{{ $cliente->id }}">
                 @else
-                    <select class="form-control" id="cliente_nome" name="cliente_id" value="{{ Request::old('cliente_id') }}">
+                    <select class="form-control select2" id="cliente_nome" name="cliente_id" value="{{ Request::old('cliente_id') }}">
                         <option value="">Selecione</option>
                     @foreach ($clientes as $nome => $id)
                         <option value="{{ $id }}">{{ $nome }}</option>

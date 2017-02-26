@@ -20,7 +20,7 @@
 
             <div class="form-group {{ $errors->has('cliente_id') ? 'has-error' : '' }}">
                 <label for="cliente_nome">Pessoa</label>
-                    <select class="form-control" id="cliente_nome" name="cliente_id" value="{{ Request::old('cliente_id') }}">
+                    <select class="form-control select2" id="cliente_nome" name="cliente_id" value="{{ Request::old('cliente_id') }}">
                         <option value="">Selecione</option>
                         @foreach ($clientes as $nome => $id)
                             <option value="{{ $id }}">{{ $nome }}</option>
