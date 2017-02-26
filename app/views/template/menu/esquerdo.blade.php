@@ -30,13 +30,13 @@
                 <a {{ (Request::is('*home') ? 'class="active-menu"' : '') }} href="{{action('HomeController@home')}}"><i class="fa fa-home"></i>Início</a>
             </li>
             <li {{ (Request::is('*clientes*') || Request::is('*dependentes*') ? 'class="active"' : '') }}>
-                <a href="#"><i class="fa fa-users"></i>Pessoas <span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-user-o"></i>Pessoas <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a {{ (Request::is('*clientes*') ? 'class="active-menu"' : '') }} href="{{action('ClientesController@index')}}"><i class="fa fa-bell"></i>Pessoas</a>
+                        <a {{ (Request::is('*clientes*') ? 'class="active-menu"' : '') }} href="{{action('ClientesController@index')}}"><i class="fa fa-address-card-o"></i>Pessoas</a>
                     </li>
                     <li>
-                        <a {{ (Request::is('*dependentes*') ? 'class="active-menu"' : '') }} href="{{action('DependentesController@index')}}"><i class="fa fa-bell"></i>Dependentes</a>
+                        <a {{ (Request::is('*dependentes*') ? 'class="active-menu"' : '') }} href="{{action('DependentesController@index')}}"><i class="fa fa-users"></i>Dependentes</a>
                     </li>
                 </ul>
             </li>
