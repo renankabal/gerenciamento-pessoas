@@ -89,17 +89,7 @@
                             {{ $errors->first('profissao', '<span class="help-block">:message</span>') }}
                         </div>
 
-                        <div class="form-group {{ $errors->has('estado_civil') ? 'has-error' : '' }}">
-                            <label for="profissao">Estado civil</label>
-                            <select class="form-control" id="estado_civil" name="cliente[estado_civil]" value="{{ Request::old('estado_civil', $cliente->estado_civil) }}">
-                                <option value="Solteiro" {{ $cliente->estado_civil == 'Solteiro' ? 'selected' : '' }}>Solteiro</option>
-                                <option value="Casado" {{ $cliente->estado_civil == 'Casado' ? 'selected' : '' }}>Casado</option>
-                                <option value="Separado" {{ $cliente->estado_civil == 'Separado' ? 'selected' : '' }}>Separado</option>
-                                <option value="Divorciado" {{ $cliente->estado_civil == 'Divorciado' ? 'selected' : '' }}>Divorciado</option>
-                                <option value="Viúvo" {{ $cliente->estado_civil == 'Viúvo' ? 'selected' : '' }}>Viúvo</option>
-                            </select>
-                            {{ $errors->first('estado_civil', '<span class="help-block">:message</span>') }}
-                        </div>
+                        {{-- contato --}}
 
                         <div class="row">
                             <div class="col-md-8">
@@ -127,9 +117,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-6">
-                                <p class="bg-primary">Endereço de correspondência</p>
-
+                            <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
 
@@ -142,13 +130,6 @@
                                     </div>
                                     <div class="col-md-2">
                                         <img id="gif-loading" src="{{ asset('/template/assets/img/loading.gif') }}">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div id="checkbox-endereco" class="checkbox">
-                                            <label>
-                                            <input id="endereco_cobranca" name="endereco_cobranca" type="checkbox" value="1" {{ $cliente->enderecoCorrespondencia->logradouro == $cliente->enderecoCobranca->_logradouro ? 'checked' : '' }}> Endereço de cobrança
-                                            </label>
-                                        </div>
                                     </div>
                                 </div>
 

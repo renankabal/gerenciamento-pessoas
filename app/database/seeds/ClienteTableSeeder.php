@@ -19,7 +19,7 @@ class ClienteTableSeeder extends Seeder {
 						 'orgao_expedidor' 	=> 'SSP',
 						 'data_emissao' 	=> '2012/05/05',
 						 'data_nascimento' 	=> '1960/06/08',
-						 'sexo' 			=> 'M',
+						 'sexo' 			=> 'F',
 						 'profissao' 		=> 'Administrador',
 						 'email' 			=> 'cruzfsson@cruzfsson.com',
 						 'estado_civil' 	=> 'Solteiro'
@@ -32,7 +32,7 @@ class ClienteTableSeeder extends Seeder {
 						 'orgao_expedidor' 	=> 'PTC',
 						 'data_emissao' 	=> '2012/05/05',
 						 'data_nascimento' 	=> '1988/09/11',
-						 'sexo' 			=> 'M',
+						 'sexo' 			=> 'F',
 						 'profissao' 		=> 'Gerente de Marketing',
 						 'email' 			=> 'himtexugo@texugo.com',
 						 'estado_civil' 	=> 'Casado'

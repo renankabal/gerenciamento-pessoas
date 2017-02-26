@@ -54,21 +54,17 @@
         {{-- Grafico que exibe as oportunidades por operador --}}
         <div id="container" style="height: 290px; margin: 0 auto"></div>
         <table id="datatable" style="display:none;">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Renan Jhonatha</th>
-                    <th>Rodrigo Calilo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th></th>
-                    <td>8</td>
-                    <td>5</td>
-                </tr>
-                </tr>
-            </tbody>
+            <tr>
+                <th></th>
+                <th>Feminino</th>
+                <th>Masculino</th>
+            </tr>
+            <tr>
+                <th></th>
+                @foreach($pessoas_sexo as $sexo)
+                    <td>{{ $sexo->total }}</td>
+                @endforeach
+            </tr>
         </table>
         {{-- Exibe as oportunidades por operador--}}
         <div class="panel panel-info">

@@ -8,26 +8,35 @@
 		<li><a href="{{action('ClientesController@index')}}">Pessoas</a></li>
 	</ol>
 
+	{{-- Filtro de nome/cpf da pessoa --}}
+    <?php
+    	$pesquisa2 = Input::get('busca');
+    ?>
 	<div class="row">
 		<div class="col-md-12">
-			<form method="get" action="{{ action('ClientesController@find') }}">
+			<form method="get" action="{{ action('ClientesController@index') }}">
 				<div class="input-group">
-				  <input type="text" id="busca" name="busca" class="form-control" placeholder="Busca" required>
-				  <span class="input-group-btn">
-				    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i> Buscar</button>
-				  </span>
+				    <input type="text" id="busca" name="busca" class="form-control" placeholder="Busca por nome ou cpf" value="{{ $pesquisa2 }}">
+				    <div class="input-group-btn">
+				    	@if ($pesquisa2)
+					    	<button type="submit" class="btn btn-default" id="form-pesquisa-limpar">
+					    		<i class="fa fa-times"></i> Limpar
+					    	</button>
+				    	@endif
+				    	<button type="submit" class="btn btn-default">
+				    		<i class="glyphicon glyphicon-search"></i> Buscar
+				    	</button>
+				    </div>
 				</div>
 			</form>
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-md-12">
 			<a id="botao-novo" href="{{ action('ClientesController@create') }}" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i> Novo</a>
 			<h2><i class="fa fa-users"></i> Pessoas</h2>
 		</div>
 	</div>
-
 	<hr>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -53,7 +62,7 @@
 					<tr>
 						<td colspan="4">
 						    <div class="alert alert-warning" role="alert">
-						        Nenhum cliente encontrado.
+						        Nenhuma pessoa encontrado.
 						    </div>
 						</td>
 					</tr>
@@ -90,5 +99,10 @@
         var pessoa_selecionada = $('[name=pessoaId]').val();
         var link = $(this).attr('link');
         window.open(link+pessoa_selecionada);
+    });
+
+    $(document).delegate('#form-pesquisa-limpar', 'click', function(e)
+    {
+    	$('#busca').val("");
     });
 </script>

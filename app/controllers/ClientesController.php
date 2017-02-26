@@ -9,7 +9,20 @@ class ClientesController extends \HelpersController {
 	 */
 	public function index()
 	{
-        $clientes = Cliente::orderBy('nome')->paginate(10);
+		$busca = Input::get('busca');
+
+        $clientes = Cliente::select('*');
+        
+        if($busca){
+            if(is_numeric($busca)){
+                $clientes = $clientes->whereRaw("cpf='$busca'");
+            }else{
+                $clientes = $clientes->where('nome', 'ilike', "%".$busca."%");
+            }
+        }
+
+        $clientes = $clientes->orderBy('nome');
+        $clientes = $clientes->paginate(10);
 
 		return View::make('clientes.index', compact('clientes'));
 	}
@@ -68,17 +81,6 @@ class ClientesController extends \HelpersController {
 		$cliente->telefone()->save($telefone);
 
 	    return Redirect::action('ClientesController@index')->with('mensagem', 'Cliente cadastrado com sucesso.');
-	}
-
-	/**
-	* Display the specified resource.
-	*
-	* @param  int  $id
-	* @return Response
-	*/
-	public function show($id)
-	{
-
 	}
 
 	/**
@@ -162,20 +164,6 @@ class ClientesController extends \HelpersController {
 
 		return Redirect::back()->with('mensagem', 'Não foi possível excluir o cliente. Ele tem vínculo com dependentes ou cobranças.');
 
-	}
-
-	/**
-	 * Mostra resultados encontrados pela busca
-	 * @return Response
-	 */
-	public function find()
-	{
-		$busca = Input::get('busca');
-		$clientes = Cliente::where('nome', 'LIKE', "%$busca%")
-							->orWhere('cpf', $busca)
-							->where('ativo', 1)->orderBy('nome')->paginate(10);
-
-		return View::make('clientes.index', compact('clientes'));
 	}
 
 	/**
