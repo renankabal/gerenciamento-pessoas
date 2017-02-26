@@ -55,4 +55,17 @@ class Parcela extends Eloquent {
         return $this->belongsTo('DependenteTipo');
     }
 
+    public function status_parcela()
+    {
+        $data_atual = date('Y-m-d');
+
+        if($this->parcela_finalizada) {
+            $situacao = "<span class='label label-success' title='Pagamento realizado no dia ". format_date($this->data_pagamento). "'>PAGA</span>";
+        } elseif(!$this->parcela_finalizada && format_date($this->data_vencimento,'Y-m-d') >= $data_atual) {
+            $situacao = "<span class='label label-warning'>EM ABERTO</span>";
+        } elseif(!$this->parcela_finalizada && format_date($this->data_vencimento,'Y-m-d') < $data_atual){
+            $situacao =  "<span class='label label-danger'>VENCIDO</span>";
+        }
+        return $situacao;
+    }   
 }

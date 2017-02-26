@@ -11,7 +11,7 @@ class DebitosController extends \HelpersController {
     {
         $busca = Input::get('busca');
 
-        $debitos = Debito::select('*', 'clientes.nome as cliente', 'clientes.cpf')
+        $debitos = Debito::select('*', 'debitos.id as debito_id', 'clientes.nome as cliente', 'clientes.cpf')
                     ->leftJoin('clientes', 'clientes.id', '=', 'debitos.cliente_id');
         
         if($busca){
@@ -139,4 +139,22 @@ class DebitosController extends \HelpersController {
 
     }
 
+    /**
+     *
+     * Esses dois métodos são para a inclusão de dependente diretamente da view index do cliente
+     */
+    public function lista_parcelas($debito_id)
+    {
+        $parcelas = Parcela::select('clientes.nome as pessoa',
+                                    'parcelas.valor_parcela',
+                                    'parcelas.descricao',
+                                    'parcelas.parcela',
+                                    'parcelas.data_vencimento')
+                            ->leftJoin('debitos', 'debitos.id', '=', 'parcelas.debito_id')
+                            ->leftJoin('clientes', 'clientes.id', '=', 'debitos.cliente_id')
+                            ->where('debito_id', $debito_id)->get();
+        $pessoa = $parcelas[0]->pessoa;
+
+        return View::make('debitos.lista_parcelas', compact('parcelas', 'pessoa'));
+    }
 }

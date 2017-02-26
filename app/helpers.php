@@ -40,3 +40,19 @@ if (!function_exists('formataMoeda')) {
         return $valor;
     }
 }
+
+/**
+* Formata datas.
+*
+* @todo Caso a data não seja válida não será exibida
+* @param  string $date   data do banco, sistema de arquivo ou so.
+* @param  string $format formato aceito pelo linguagem
+* @return string
+*/
+function format_date($date, $format = 'd/m/Y') {
+    $date      = str_replace('/', '-', $date);
+    $timestamp = strtotime($date);
+    if ($timestamp !== false) {
+        return date($format, strtotime($date));
+    }
+}

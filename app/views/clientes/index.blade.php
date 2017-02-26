@@ -16,7 +16,7 @@
 		<div class="col-md-12">
 			<form method="get" action="{{ action('ClientesController@index') }}">
 				<div class="input-group">
-				    <input type="text" id="busca" name="busca" class="form-control" placeholder="Busca por nome ou cpf" value="{{ $pesquisa2 }}">
+				    <input type="text" id="busca" name="busca" class="form-control uppercase" placeholder="Busca por nome ou cpf" value="{{ $pesquisa2 }}">
 				    <div class="input-group-btn">
 				    	@if ($pesquisa2)
 					    	<button type="submit" class="btn btn-default" id="form-pesquisa-limpar">

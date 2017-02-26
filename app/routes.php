@@ -28,8 +28,7 @@ Route::group(array('before' => 'auth'), function()
 	
 	//Menus da administraçao
 	Route::group(array('prefix' => 'home'), function () {
-	    Route::resource('/clientes', 'ClientesController', array('except' => 'show'));
-		Route::get('/clientes/find/', 'ClientesController@find');
+	    Route::resource('/clientes', 'ClientesController');
 	    
 	    // Adicionar dependentes a partir de Clientes
 	    Route::get('/clientes/{cliente_id}/dependente', 'ClientesController@createDependente');
@@ -39,16 +38,20 @@ Route::group(array('before' => 'auth'), function()
 	    Route::get('/crms/confirmar/{cliente_id}', 'CrmController@createCrm');
 		Route::post('/crms/confirmar/{cliente_id}', 'CrmController@storeCrm');
 	    
-	    Route::resource('/dependentes', 'DependentesController', array('except' => 'show'));
-		Route::get('/dependentes/find/', 'DependentesController@find');
+	    Route::resource('/dependentes', 'DependentesController');
 	    Route::resource('/perfis', 'PerfilController');
 	    Route::resource('/usuarios', 'UsuarioController');
-	    Route::resource('/debitos', 'DebitosController');
+
+	    Route::resource('/debitos', 'DebitosController');	    
+	    Route::get('/debitos/{debito_id}/lista_parcelas', 'DebitosController@lista_parcelas');
+
 	    Route::resource('/parcelas', 'ParcelasController');
 
 	    Route::resource('/fotos', 'FotosController');
 
+	    // RELATÓRIOS DO SISTEMA
 	    Route::get('/carteirinha/{cliente_id}', 'RelatoriosController@carteirinha');//Gera carteirinha do cliente
+		Route::get('/carne/{debito_id}', 'RelatoriosController@carne');//Gera carteirinha do cliente
 
 	});
 
