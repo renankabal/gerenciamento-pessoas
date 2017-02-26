@@ -1,0 +1,120 @@
+.txt-center {
+    text-align: center !important
+}
+.form-signin {
+    max-width: 350px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);            /* background-color: white; */
+    background-color: rgb(252, 252, 252);
+    padding: 20px;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+/*Traço superior abaixo do botão menu*/
+.traco-inferior {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+.rodape {
+    text-align: center;
+    font-size:8pt;
+    font-family: Verdana;
+    width:100%;
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    background-color: rgb(245, 245, 245);
+    z-index: 10;
+}
+
+/*caixa login*/
+.txt-center {
+    text-align: center !important
+}
+.form-signin {
+    max-width: 350px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);        /* background-color: white; */
+    background-color: rgb(252, 252, 252);
+    padding: 20px;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox {
+    margin-bottom: 10px;
+}
+/*Informações do login, 'nome', ultimo acesso*/
+.box-login{
+    text-indent: 0px !important; 
+    line-height: 20px !important;
+}
+
+/*Balão que exibi nas caixas de menu esquerdo*/
+.ultimo-acesso {
+    font-size: 9px;
+    color: #FFFFFF;
+}
+.user {
+    border-radius: 50%;
+    width: 85px;
+    height: 85px;
+}
+.cracha-vermelho {
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;        /*line-height: 1;*/
+    color: #FFF;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: rgba(195, 59, 50, 1);
+    border-radius: 10px;
+}
+.cracha-verde {
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;        /*line-height: 1;*/
+    color: #FFF;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: rgba(68, 180, 77, 1);
+    border-radius: 10px;
+}
+/*visualizar_processo.php*/
+#bs-callout-danger {
+  border-left-color: #3364A5;
+}
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+.menor{
+    font-size: 11px;
+}

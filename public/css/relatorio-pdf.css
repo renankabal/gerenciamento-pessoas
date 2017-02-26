@@ -1,0 +1,92 @@
+@page {
+  margin: 10px 50px 60px !important;
+}
+body {
+  font-family: arial;
+  margin: 0.5cm 0;
+  text-align: justify;
+  padding-top: 85px;
+  padding-bottom: 70px;
+}
+.cabecalho_relatorio,
+.rodape_relatorio {
+  position: fixed;
+  left: 0;
+  right: 0;
+  color: #040404;
+  font-size: 0.9em;
+}
+.cabecalho_relatorio {
+  top: 5px;
+  border-bottom: 0.1pt solid #aaa;
+}
+.rodape_relatorio {
+  bottom: 10px;
+  border-top: 0.1pt solid #aaa;  
+}
+.conteudo_relatorio{
+  text-indent:160px;
+}
+.assinatura_relatorio {
+  position: fixed;
+  bottom: 150;
+}
+
+.cabecalho_relatorio table,
+.rodape_relatorio table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+.cabecalho_relatorio td {
+  padding: 0;
+  position: fixed !important;
+}
+.rodape_relatorio  td {
+  padding: 0;
+  width: 50%;
+  position: fixed !important;
+}
+.page-number {
+  text-align: center;
+}
+.page-number:before {
+  content: "Page " counter(page);
+}
+hr {
+  display: block;
+  page-break-after: always !important;
+}
+a {
+  border: none !important;
+}
+img {
+  border: none !important;
+}
+table {
+  width: 100% !important;
+  border-collapse: collapse;
+  text-align: left;
+  border: 1px;
+}
+input {
+  border: none !important;
+}
+th {
+  text-align: center;
+  color: #FFFFFF;
+  background: #004080;
+}
+p {
+  margin: 5px;
+}
+td {
+  font-size: 13px;
+  text-align: left;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.legenda {
+    text-align:right;
+}

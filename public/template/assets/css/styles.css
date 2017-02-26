@@ -1,0 +1,58 @@
+#botao-novo {
+	margin-top: 20px;
+}
+
+.excluir-item {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.btn-cadastro {
+	margin: 20px 0px 20px;
+	background: #fafafa;
+	padding: 15px;
+	box-shadow: 0 0px 2px #ccc;
+}
+
+#gif-loading, #gif-loading2 {
+	display: none;
+	margin-top: 25%;
+}
+
+#msg-cep, #msg-cep2 {
+	display: none;
+	color: #A94442;
+}
+
+#checkbox-endereco {
+	margin-top: 10%;
+}
+
+.tab-content {
+	padding-top: 15px;
+}
+
+.bg-primary {
+	padding: 10px;
+}
+
+.select2-container {
+	padding: 0px;
+	border-width: 0px;
+}
+
+.select2-container .select2-choice {
+	height: 38px;
+	line-height: 38px;
+}
+
+#link-dependentes:link,
+#link-dependentes:visited {
+	color: #000;
+    text-decoration: none;
+}
+
+#link-dependentes:link:active,
+#link-dependentes:visited:active {
+	color: #000;
+}
