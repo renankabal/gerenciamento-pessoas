@@ -33,7 +33,7 @@ class CriaFinanceiro extends Migration {
             $table->string('descricao', 255)->nullable();
             $table->integer('debito_id')->unsigned();
             $table->foreign('debito_id')->references('id')->on('debitos');
-            $table->string('parcela')->unsigned();
+            $table->string('parcela');
             $table->integer('total_parcelas')->unsigned();
             $table->float('valor_parcela')->unsigned();
             $table->date('data_vencimento');
