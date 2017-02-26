@@ -17,6 +17,7 @@ class RelatoriosController extends BaseController {
 		*Paisagem = landscape
 		*/
 		$html = View::make('relatorios.carteirinha', compact('dados'));
+		return $html;
     	return PDF::load($html, 'A4', 'portrait')->show();
 
 	}
