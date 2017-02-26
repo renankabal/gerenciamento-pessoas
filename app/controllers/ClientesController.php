@@ -9,7 +9,7 @@ class ClientesController extends \HelpersController {
 	 */
 	public function index()
 	{
-        $clientes = Cliente::where('ativo', 1)->orderBy('nome')->paginate(10);
+        $clientes = Cliente::orderBy('nome')->paginate(10);
 
 		return View::make('clientes.index', compact('clientes'));
 	}
@@ -35,23 +35,21 @@ class ClientesController extends \HelpersController {
 		$inputCliente = Input::get('cliente');
 		$inputEnderecoCorresp = Input::get('endereco');
 		$inputTelefone = Input::get('telefone');
-		$inputEnderecoCob = Input::get('cobranca');
 
-		$inputs = array_merge_recursive($inputCliente, $inputEnderecoCorresp, $inputTelefone, $inputEnderecoCob);
+		$inputs = array_merge_recursive($inputCliente, $inputEnderecoCorresp, $inputTelefone);
 
 
 		$validatorCliente = Validator::make($inputCliente, Cliente::$rules);
 		$validatorEnderecoCorresp = Validator::make($inputEnderecoCorresp, EnderecoCorrespondencia::$rules);
 		$validatorTelefone = Validator::make($inputTelefone, Telefone::$rules);
-		$validatorEnderecoCob = Validator::make($inputEnderecoCob, EnderecoCobranca::$rules);
 
-		if ( $validatorCliente->fails() || $validatorEnderecoCorresp->fails() || $validatorTelefone->fails() || $validatorEnderecoCob->fails() )
+
+		if ($validatorCliente->fails() || $validatorEnderecoCorresp->fails() || $validatorTelefone->fails())
 		{
 			# Mescla os arrays de erros
 			$errors = $validatorCliente->errors();
 			$errors->merge($validatorEnderecoCorresp->errors());
 			$errors->merge($validatorTelefone->errors());
-			$errors->merge($validatorEnderecoCob->errors());
 
 			return Redirect::action('ClientesController@create')->withErrors($errors)->withInput($inputs);
 		}
@@ -63,13 +61,11 @@ class ClientesController extends \HelpersController {
 		$cliente = new Cliente(array_filter($inputCliente));
 		$endereco = new EnderecoCorrespondencia($inputEnderecoCorresp);
 		$telefone = new Telefone($inputTelefone);
-		$cobranca = new EnderecoCobranca($inputEnderecoCob);
 
 		$cliente->save();
 		$cliente->enderecoCorrespondencia()->save($endereco);
 		
 		$cliente->telefone()->save($telefone);
-		$cliente->enderecoCobranca()->save($cobranca);
 
 	    return Redirect::action('ClientesController@index')->with('mensagem', 'Cliente cadastrado com sucesso.');
 	}
@@ -93,10 +89,10 @@ class ClientesController extends \HelpersController {
 	 */
 	public function edit($id)
 	{
-		$cliente = Cliente::with('enderecoCorrespondencia', 'telefone', 'oportunidade')->find($id);
+		$cliente = Cliente::with('enderecoCorrespondencia', 'telefone')->find($id);
 		$telefoneTipo = TelefoneTipo::get();
 
-		//return Response::json($cliente);
+		// return Response::json($cliente->dependentes);
 		return View::make('clientes.edit', compact('cliente', 'telefoneTipo'));
 	}
 
@@ -113,15 +109,12 @@ class ClientesController extends \HelpersController {
 		$inputCliente = Input::get('cliente');
 		$inputEnderecoCorresp = Input::get('endereco');
 		$inputTelefone = Input::get('telefone');
-		$inputEnderecoCob = Input::get('cobranca');
 
 		$inputs = array_merge_recursive($inputCliente, $inputEnderecoCorresp, $inputTelefone, $inputEnderecoCob);
 
 		$validatorCliente = Validator::make($inputCliente, $this->handleValidation(Cliente::$rules, $id));
 		$validatorEnderecoCorresp = Validator::make($inputEnderecoCorresp, EnderecoCorrespondencia::$rules);
 		$validatorTelefone = Validator::make($inputTelefone, Telefone::$rules);
-		$validatorEnderecoCob = Validator::make($inputEnderecoCob, EnderecoCobranca::$rules);
-
 
 		if ($validatorCliente->fails() || $validatorEnderecoCorresp->fails() || $validatorTelefone->fails() || $validatorEnderecoCob->fails())
 		{
@@ -129,7 +122,6 @@ class ClientesController extends \HelpersController {
 			$errors = $validatorCliente->errors();
 			$errors->merge($validatorEnderecoCorresp->errors());
 			$errors->merge($validatorTelefone->errors());
-			$errors->merge($validatorEnderecoCob->errors());
 
 			return Redirect::action('ClientesController@edit', $id)->withErrors($errors)->withInput($inputs);
 		}
@@ -142,7 +134,6 @@ class ClientesController extends \HelpersController {
 
 		$cliente->update(array_filter($inputCliente));
 		$cliente->enderecoCorrespondencia()->update($inputEnderecoCorresp);
-		$cliente->enderecoCobranca()->update($inputEnderecoCob);
 		$cliente->telefone()->update($inputTelefone);
 
 	    return Redirect::action('ClientesController@index')->with('mensagem', 'Cliente atualizado com sucesso.');

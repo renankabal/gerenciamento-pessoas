@@ -50,29 +50,9 @@ class Cliente extends Eloquent {
 	 *
 	*/
 
-	public function plano()
-	{
-		return $this->hasOne('Plano');
-	}
-
-	public function zona()
-	{
-		return $this->hasOne('Zona');
-	}
-
-	public function cobrancas()
-	{
-		return $this->hasMany('Cobranca');
-	}
-
 	public function enderecoCorrespondencia()
 	{
 		return $this->hasOne('EnderecoCorrespondencia');
-	}
-
-	public function enderecoCobranca()
-	{
-		return $this->hasOne('enderecoCobranca');
 	}
 
 	public function telefone()

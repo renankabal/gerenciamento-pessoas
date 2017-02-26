@@ -12,16 +12,8 @@
               <td width="5%">Ação</td>
           </tr>
           <tr>
-              <td>Contrato</td>
-              <td title="Visualizar"><a href="{{ action('RelatoriosController@contrato') }}" target="_blank"><i class="fa fa-search"></i></a></td>
-          </tr>
-          <tr>
               <td>Carteirinhas</td>
-              <td title="Visualizar"><a href="" target="_blank"><i class="fa fa-search"></i></a></td>
-          </tr>
-          <tr>
-              <td>Boletos</td>
-              <td title="Visualizar"><a href="{{ action('RelatoriosController@boleto') }}" target="_blank"><i class="fa fa-search"></i></a></td>
+              <td title="Visualizar"><a href="{{  action('RelatoriosController@carteirinha') }}" target="_blank"><i class="fa fa-search"></i></a></td>
           </tr>
         </table>
       </div>

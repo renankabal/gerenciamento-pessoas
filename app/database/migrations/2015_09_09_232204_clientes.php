@@ -26,7 +26,7 @@ class Clientes extends Migration {
 			$table->string('profissao', 150)->nullable();
 			$table->string('email', 150)->nullable();
 			$table->string('estado_civil', 150);
-			$table->boolean('ativo')->default(1);
+			$table->boolean('ativo')->default(true);
 			$table->timestamps();
 		});
 	}

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('DependenteTableSeeder');
 		$this->command->info('
 		**********************************************
-		*            Banco criado e povoado!  	     *
+		*       Banco do SIGEP criado e povoado!  	 *
 		**********************************************
 		');
 	}
