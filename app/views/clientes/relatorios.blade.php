@@ -13,7 +13,7 @@
           </tr>
           <tr>
               <td>Carteirinhas</td>
-              <td title="Visualizar"><a href="{{  action('RelatoriosController@carteirinha') }}" target="_blank"><i class="fa fa-search"></i></a></td>
+              <td title="Visualizar"><a href="/carteirinha/2" target="_blank"><i class="fa fa-search"></i></a></td>
           </tr>
         </table>
       </div>

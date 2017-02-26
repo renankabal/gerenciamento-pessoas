@@ -1,4 +1,6 @@
-{{ HTML::script('template/assets/js/jquery-1.10.2.js') }}
+{{-- JQUERY --}}
+{{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
+{{-- BOOTSTRAP --}}
 {{ HTML::script('template/assets/js/bootstrap.js') }}
 {{ HTML::script('template/assets/js/jquery.metisMenu.js') }}
 {{ HTML::script('template/assets/js/custom.js') }}
