@@ -44,7 +44,6 @@
 						<td>
 							<div class="btn-group btn-group-sm" role="group">
 								<a href="{{ action('ClientesController@edit', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar"><i class="glyphicon glyphicon-edit"></i></a>
-								<a href="{{ action('CrmController@createCrm', $cliente->oportunidade_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Cadastrar CRM"><i class="fa fa-arrow-right"></i></a>
 								<a href="{{ action('ClientesController@createDependente', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Incluir dependente"><i class="fa fa-users"></i></a>
 								<a class="btn btn-default visualizar_relatorios" cliente-id="{{ $cliente->id }}"  cliente-nome="{{ $cliente->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Documentos"><i class="fa fa-file-text-o"></i></a>
 							</div>
