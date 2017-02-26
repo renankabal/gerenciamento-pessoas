@@ -4,5 +4,5 @@
 
 {{-- {{ dd($clientes) }} --}}
 @section('layout-conteudo')
-        {{ $clientes->nome }}
+        @include('relatorios.corpo_carteira')
 @stop

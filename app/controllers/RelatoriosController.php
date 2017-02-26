@@ -10,13 +10,13 @@ class RelatoriosController extends BaseController {
 	 */	
 
 	public function carteirinha($id) {
-		$clientes = Cliente::find($id);
+		$dados = Cliente::find($id);
 		/**
 		*Configuraçao
 		*Retrato = portrait
 		*Paisagem = landscape
 		*/
-		$html = View::make('relatorios.carteirinha', compact('clientes'));
+		$html = View::make('relatorios.carteirinha', compact('dados'));
     	return PDF::load($html, 'A4', 'portrait')->show();
 
 	}
