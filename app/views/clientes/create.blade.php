@@ -125,9 +125,7 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="endereco">
-                        <div class="col-md-6">
-
-                            <p class="bg-primary">Endereço de correspondência</p>
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group {{ $errors->has('cep') ? 'has-error' : '' }}">
@@ -139,13 +137,6 @@
                                 </div>
                                 <div class="col-md-2">
                                     <img id="gif-loading" src="{{ asset('/template/assets/img/loading.gif') }}">
-                                </div>
-                                <div class="col-md-6">
-                                    <div id="checkbox-endereco" class="checkbox">
-                                        <label>
-                                        <input id="endereco_cobranca" name="endereco[endereco_cobranca]" type="checkbox" value="1" <?php if ($errors->has()) { if (Request::old('endereco_cobranca')) { echo 'checked'; }  } else echo 'checked' ?>> Endereço de cobrança
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
 
@@ -190,65 +181,7 @@
                                 {{ $errors->first('estado', '<span class="help-block">:message</span>') }}
                             </div>
 
-                        </div><!--col-md-6-->
-                        <div class="col-md-6">
-                            <p class="bg-primary">Endereço de cobrança</p>
-
-                            <div class="row">
-                               <div class="col-md-4">
-                                    <div class="form-group {{ $errors->has('_cep') ? 'has-error' : '' }}">
-                                        <label for="_cep">CEP</label>
-                                        <input type="text" class="form-control" id="_cep" name="cobranca[_cep]" value="{{ Request::old('_cep') }}">
-                                        <span id="msg-cep2" class="help-block">CEP não encontrado.</span>
-                                        {{ $errors->first('_cep', '<span class="help-block">:message</span>') }}
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <img id="gif-loading2" src="{{ asset('/template/assets/img/loading.gif') }}">
-                                </div>
-                            </div>
-
-                            <div class="form-group {{ $errors->has('_logradouro') ? 'has-error' : '' }}">
-                                <label for="_logradouro">Logradouro</label>
-                                <input type="text" class="form-control" id="_logradouro" name="cobranca[_logradouro]" value="{{ Request::old('_logradouro') }}">
-                                {{ $errors->first('_logradouro', '<span class="help-block">:message</span>') }}
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group {{ $errors->has('_numero') ? 'has-error' : '' }}">
-                                        <label for="_numero">Número</label>
-                                        <input type="text" class="form-control" id="_numero" name="cobranca[_numero]" value="{{ Request::old('_numero') }}">
-                                        {{ $errors->first('_numero', '<span class="help-block">:message</span>') }}
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group {{ $errors->has('_referencia') ? 'has-error' : '' }}">
-                                        <label for="_referencia">Referência</label>
-                                        <input type="text" class="form-control" id="_referencia" name="cobranca[_referencia]" value="{{ Request::old('_referencia') }}">
-                                        {{ $errors->first('_referencia', '<span class="help-block">:message</span>') }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group {{ $errors->has('_bairro') ? 'has-error' : '' }}">
-                                <label for="_bairro">Bairro</label>
-                                <input type="text" class="form-control" id="_bairro" name="cobranca[_bairro]" value="{{ Request::old('_bairro') }}">
-                                {{ $errors->first('_bairro', '<span class="help-block">:message</span>') }}
-                            </div>
-
-                            <div class="form-group {{ $errors->has('_cidade') ? 'has-error' : '' }}">
-                                <label for="_cidade">Cidade</label>
-                                <input type="text" class="form-control" id="_cidade" name="cobranca[_cidade]" value="{{ Request::old('_cidade') }}">
-                                {{ $errors->first('_cidade', '<span class="help-block">:message</span>') }}
-                            </div>
-
-                            <div class="form-group {{ $errors->has('_estado') ? 'has-error' : '' }}">
-                                <label for="_estado">Estado</label>
-                                <input type="text" class="form-control" id="_estado" name="cobranca[_estado]" value="{{ Request::old('_estado') }}">
-                                {{ $errors->first('_estado', '<span class="help-block">:message</span>') }}
-                            </div>
-                        </div>
+                        </div><!--col-md-12-->
                     </div>
                 </div>
             </div>        

@@ -12,7 +12,7 @@ $(function(){
 		if ($('#cep').val() != '') {
 
 			$.ajax({
-				url: 'http://cep.correiocontrol.com.br/' + cep + '.json',
+				url :"https://viacep.com.br/ws/" + cep +"/json",
 				type: 'GET',
 				dataType: 'json',
 				beforeSend: function(){ $('#gif-loading').css('display', 'inline')},
