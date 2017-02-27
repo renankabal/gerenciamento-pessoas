@@ -155,7 +155,8 @@ class DebitosController extends \HelpersController {
                                     'parcelas.data_vencimento')
                             ->leftJoin('debitos', 'debitos.id', '=', 'parcelas.debito_id')
                             ->leftJoin('clientes', 'clientes.id', '=', 'debitos.cliente_id')
-                            ->where('debito_id', $debito_id)->get();
+                            ->where('debito_id', $debito_id)
+                            ->orderBy('parcelas.data_vencimento', 'asc')->get();
         $pessoa = $parcelas[0]->pessoa;
 
         return View::make('debitos.lista_parcelas', compact('parcelas', 'pessoa'));
