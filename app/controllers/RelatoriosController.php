@@ -37,4 +37,24 @@ class RelatoriosController extends BaseController {
     	return PDF::load($html, 'A4', 'portrait')->show();
 
 	}
+
+		/**
+	 *Gera o carteirinha do cliente.
+	 */	
+
+	public function comprovante($parcela) {
+		$dados = Parcela::select('clientes.nome as pessoa', 'clientes.cpf', 'clientes.matricula',
+								'parcelas.descricao', 'parcelas.parcela', 'parcelas.valor_parcela',
+								'parcelas.data_vencimento', 'parcelas.valor_pago', 'parcelas.data_pagamento')
+						->leftJoin('debitos', 'debitos.id', '=', 'parcelas.debito_id')
+						->leftJoin('clientes', 'clientes.id', '=', 'debitos.cliente_id')
+						->where('parcelas.id', $parcela)->first();
+		/**
+		*Configuraçao
+		*Retrato = portrait
+		*Paisagem = landscape
+		*/
+		return $html = View::make('relatorios.comprovante', compact('dados'));
+
+	}
 }

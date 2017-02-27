@@ -31,12 +31,16 @@
                     <td>{{  $parcela->status_parcela() }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a type="button" href="{{ action('ParcelasController@efetuaPagamento', $parcela->parcela_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Efetuar pagamento">
-                                <i class="fa fa-usd"></i>
-                            </a>
-                            {{-- <a type="button" href="" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar parcelas">
-                                <i class="fa fa-clone"></i>
-                            </a> --}}
+                            {{-- Se a parcela já tiver sido paga gera o comprovante de pagamento --}}
+                            @if($parcela->parcela_finalizada)
+                                <a class="btn btn-default"  target="_blank" title="Emitir comprovante de pagamento" href="{{action('RelatoriosController@comprovante',$parcela->parcela_id)}}">
+                                    <i class="fa fa-check-square-o"></i>
+                                </a>
+                            @else
+                                <a type="button" href="{{ action('ParcelasController@efetuaPagamento', $parcela->parcela_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Efetuar pagamento">
+                                    <i class="fa fa-usd"></i>
+                                </a>
+                            @endif
                         </div>
                     </td>
                 </tr>

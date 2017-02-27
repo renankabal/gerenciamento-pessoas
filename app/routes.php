@@ -50,8 +50,9 @@ Route::group(array('before' => 'auth'), function()
 	    
 
 	    // RELATÓRIOS DO SISTEMA
-	    Route::get('/carteirinha/{cliente_id}', 'RelatoriosController@carteirinha');//Gera carteirinha do cliente
-		Route::get('/carne/{debito_id}', 'RelatoriosController@carne');//Gera carteirinha do cliente
+	    Route::get('/carteirinha/{cliente_id}', 'RelatoriosController@carteirinha');
+		Route::get('/carne/{debito_id}', 'RelatoriosController@carne');
+		Route::get('/comprovante/{parcela_id}', 'RelatoriosController@comprovante');
 
 	});
 
