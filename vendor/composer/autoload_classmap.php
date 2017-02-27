@@ -419,6 +419,7 @@ return array(
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'Parcela' => $baseDir . '/app/models/Parcela.php',
+    'ParcelasController' => $baseDir . '/app/controllers/ParcelasController.php',
     'Perfil' => $baseDir . '/app/models/Perfil.php',
     'PerfilController' => $baseDir . '/app/controllers/PerfilController.php',
     'PerfilTableSeeder' => $baseDir . '/app/database/seeds/PerfilTableSeeder.php',

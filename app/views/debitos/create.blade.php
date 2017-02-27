@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
-                <label for="nome">Nome</label>
+                <label for="nome">Descricao</label>
                 <input type="text" class="form-control uppercase" id="nome" name="nome" value="{{ Request::old('nome') }}">
                 {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
             </div>

@@ -145,10 +145,13 @@ class DebitosController extends \HelpersController {
      */
     public function lista_parcelas($debito_id)
     {
-        $parcelas = Parcela::select('clientes.nome as pessoa',
+        $parcelas = Parcela::select('parcelas.id as parcela_id',
+                                    'clientes.nome as pessoa',
                                     'parcelas.valor_parcela',
                                     'parcelas.descricao',
                                     'parcelas.parcela',
+                                    'parcelas.data_pagamento',
+                                    'parcelas.parcela_finalizada',
                                     'parcelas.data_vencimento')
                             ->leftJoin('debitos', 'debitos.id', '=', 'parcelas.debito_id')
                             ->leftJoin('clientes', 'clientes.id', '=', 'debitos.cliente_id')

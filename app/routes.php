@@ -26,28 +26,28 @@ Route::group(array('before' => 'auth'), function()
 	Route::post('/enviar', 'UsuarioController@upload');
 	// Route::get('/perfil/editar/{id}', 'PerfilController@editar');
 	
-	//Menus da administraçao
+	//MENUS DE ADMINISTRAÇÃO
 	Route::group(array('prefix' => 'home'), function () {
+	    // ROTAS GLOBAIS
 	    Route::resource('/clientes', 'ClientesController');
-	    
-	    // Adicionar dependentes a partir de Clientes
-	    Route::get('/clientes/{cliente_id}/dependente', 'ClientesController@createDependente');
-	    Route::post('/clientes/{cliente_id}/dependente', 'ClientesController@storeDependente');
-	    
-	    // Adiciona um CRM a oportunidade e aos clientes
-	    Route::get('/crms/confirmar/{cliente_id}', 'CrmController@createCrm');
-		Route::post('/crms/confirmar/{cliente_id}', 'CrmController@storeCrm');
-	    
+	    Route::resource('/fotos', 'FotosController');
 	    Route::resource('/dependentes', 'DependentesController');
 	    Route::resource('/perfis', 'PerfilController');
 	    Route::resource('/usuarios', 'UsuarioController');
-
-	    Route::resource('/debitos', 'DebitosController');	    
-	    Route::get('/debitos/{debito_id}/lista_parcelas', 'DebitosController@lista_parcelas');
-
+	    Route::resource('/debitos', 'DebitosController');
 	    Route::resource('/parcelas', 'ParcelasController');
 
-	    Route::resource('/fotos', 'FotosController');
+	    // ADICIONA DEPENDENTES A PARTIR DE CLIENTE
+	    Route::get('/clientes/{cliente_id}/dependente', 'ClientesController@createDependente');
+	    Route::post('/clientes/{cliente_id}/dependente', 'ClientesController@storeDependente');
+	    	    
+	   	// PASSAR PARA PARCELAS
+	    Route::get('/debitos/{debito_id}/lista_parcelas', 'DebitosController@lista_parcelas');
+
+	    // ROTAS PARA PAGAMENTO
+	    Route::get('/parcelas/{cliente_id}/pagamento', 'ParcelasController@efetuaPagamento');
+	    Route::post('/parcelas/{cliente_id}/pagamento', 'ParcelasController@storePagamento');
+	    
 
 	    // RELATÓRIOS DO SISTEMA
 	    Route::get('/carteirinha/{cliente_id}', 'RelatoriosController@carteirinha');//Gera carteirinha do cliente
@@ -55,7 +55,7 @@ Route::group(array('before' => 'auth'), function()
 
 	});
 
-	// Rotas do administrador
+	// ROTAS DO ADMINISTRADOR
     Route::group(array('before' => 'auth.admin'), function()
     {
         Route::resource('usuarios', 'UsersController');

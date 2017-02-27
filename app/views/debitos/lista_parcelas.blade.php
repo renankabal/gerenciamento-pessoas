@@ -31,12 +31,12 @@
                     <td>{{  $parcela->status_parcela() }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a type="button" href="" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Efetuar pagamento">
+                            <a type="button" href="{{ action('ParcelasController@efetuaPagamento', $parcela->parcela_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Efetuar pagamento">
                                 <i class="fa fa-usd"></i>
                             </a>
-                            <a type="button" href="" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar parcelas">
+                            {{-- <a type="button" href="" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar parcelas">
                                 <i class="fa fa-clone"></i>
-                            </a>
+                            </a> --}}
                         </div>
                     </td>
                 </tr>
