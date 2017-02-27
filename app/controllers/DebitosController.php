@@ -128,15 +128,26 @@ class DebitosController extends \HelpersController {
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Exclui o registro informado do banco de dados.
      *
-     * @param  int  $id
+     * @name Excluir
+     * @map destroy
+     * @param  int      $id
      * @return Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
+        $model = Debito::find($id);
 
+        DB::beginTransaction();
+        if($model->delete()){
+            DB::commit();
+            return Redirect::action('DebitosController@index')->with('mensagem', 'Débito excluido com sucesso!');
+        }else{
+            DB::rollback();
+            return Redirect::action('DebitosController@index')->with('mensagem', 'Erro ao excluir o débito');
+        }
 
+        return Redirect::action('DebitosController@index')->with('mensagem', 'Débito excluido com sucesso!');
     }
 
     /**

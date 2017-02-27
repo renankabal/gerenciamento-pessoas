@@ -38,6 +38,42 @@ class Debito extends Eloquent {
         'cliente_id'         => 'required'
     ];
 
+    /**
+     * Validação antes de deletar um débito
+     *
+     * Remove todos os registros de parcelas do
+     * debito caso ainda não tiverem sido pagas
+     *
+     * @param null
+     * @return bool
+     */
+    protected function beforeDelete()
+    {
+        DB::beginTransaction();
+        if($this->possuiPagamento()){
+            DB::rollback();
+            return false;
+        }
+        else{
+            foreach ($this->parcelas as $parcela) {        
+                $parcela->delete();
+            }
+
+            DB::commit();
+        }
+    }
+
+    /**
+     * Método responsável testar se já foi realizado o pagamento de parcelas do Débito
+     */
+    public function possuiPagamento()
+    {        
+        $parcelas = Parcela::where('debito_id',$this->id)->whereNotNull('data_pagamento')->get();
+
+        $exite_pagagamento = ($parcelas->count() > 0) ? true : false;
+        
+        return $exite_pagagamento;
+    }
     /*
      *
      * relacionamento do Eloquent ORM
@@ -46,12 +82,12 @@ class Debito extends Eloquent {
 
     public function parcela()
     {
-        return $this->hasOne('Parcela');
+        return $this->hasMany('Parcela');
     }
 
     public function clientes()
     {
-        return $this->hasMany('Cliente');
+        return $this->hasOne('Cliente');
     }
 
 }

@@ -56,3 +56,27 @@ function format_date($date, $format = 'd/m/Y') {
         return date($format, strtotime($date));
     }
 }
+
+/**
+ * Formata datas.
+ *
+ * @todo Caso não seja passado um parâmetro ele retorna a data atual
+ * @param  string $date   parâmetro de data.
+ * @return string
+ */
+function formata_mes($mes = null) {
+    if ($mes == '1') {$mes = 'JANEIRO';}
+    if ($mes == '2') {$mes = 'FEVEREIRO';}
+    if ($mes == '3') {$mes = 'MARÇO';}
+    if ($mes == '4') {$mes = 'ABRIL';}
+    if ($mes == '5') {$mes = 'MAIO';}
+    if ($mes == '6') {$mes = 'JUNHO';}
+    if ($mes == '7') {$mes = 'JULHO';}
+    if ($mes == '8') {$mes = 'AGOSTO';}
+    if ($mes == '9') {$mes = 'SETEMBRO';}
+    if ($mes == '10') {$mes = 'OUTUBRO';}
+    if ($mes == '11') {$mes = 'NOVEMBRO';}
+    if ($mes == '12') {$mes = 'DEZEMBRO';}
+
+    return $mes;
+}

@@ -45,14 +45,9 @@ class Parcela extends Eloquent {
      * relacionamento do Eloquent ORM
      * 
     */
-    public function cliente()
+    public function debito()
     {
-        return $this->belongsTo('Cliente');
-    }
-
-    public function dependenteTipo()
-    {
-        return $this->belongsTo('DependenteTipo');
+        return $this->hasOne('Debito');
     }
 
     public function status_parcela()

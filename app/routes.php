@@ -54,6 +54,8 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('/carne_avulso/{debito_id}', 'RelatoriosController@carne_avulso');
 		Route::get('/comprovante/{parcela_id}', 'RelatoriosController@comprovante');
 
+		// ROTAS DE EXCLUSÃO
+	    Route::get('/debitos/{debito_id}/delete', 'DebitosController@destroyDebitoParcelas');
 	});
 
 	// ROTAS DO ADMINISTRADOR

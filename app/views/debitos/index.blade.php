@@ -65,6 +65,9 @@
                             <a type="button" href="{{ action('RelatoriosController@carne_avulso', $debito->debito_id) }}" target="_blank" class="btn btn-default" role="button" data-toggle="tooltip" data-placement="top" title="Imprimir carnê">
                                 <i class="fa fa-print"></i>
                             </a>
+                            <a class="btn btn-danger" title="Excluir este registro" href="{{action('DebitosController@destroy', $debito->debito_id)}}", title="Deseja excluir o débito selecionado?">
+                            <i class="fa fa-trash-o"></i>
+                        </a>
                         </div>
                     </td>
                 </tr>

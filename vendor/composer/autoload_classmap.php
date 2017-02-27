@@ -36,7 +36,6 @@ return array(
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'HomologacaoController' => $baseDir . '/app/controllers/HomologacaoController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
-    'IndexController' => $baseDir . '/app/controllers/IndexController.php',
     'LoginController' => $baseDir . '/app/controllers/LoginController.php',
     'Normalizer' => $vendorDir . '/patchwork/utf8/src/Normalizer.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/ForwardCompatibility/Assert.php',

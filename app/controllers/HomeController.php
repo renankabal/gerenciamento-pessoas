@@ -29,7 +29,16 @@ class HomeController extends BaseController {
                 $quantidade_valores = $quantidade_valores.'0'.', ';
             }
         }
-		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo'));
+
+        $projecao = DB::select("SELECT
+                                    date_part('month', data_vencimento) as mes,
+                                    sum(parcelas.valor_parcela) as valor
+                                FROM
+                                    parcelas
+                                WHERE parcela_finalizada=false and date_part('year', created_at) = 2017
+                                GROUP BY date_part('month', data_vencimento) ORDER BY mes");
+
+		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao'));
 	}
 
 }

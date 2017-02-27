@@ -87,6 +87,63 @@
     </div>
     {{-- VALORES PAGO POR MÊS (LINHA 3)--}}
     <div class="col-md-12">
+        <div id="receber" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#receber').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Parcelas pendentes a receber'
+                },
+                subtitle: {
+                    text: 'Total das parcelas vencidas no mês.'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total'
+                    }
+                },
+                credits:{
+                    enabled: false
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: 'R$ {point.y:.1f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>R$ {point.y:.2f}</b><br/>'
+                },
+                series: [{
+                    name: 'Total do mês',
+                    colorByPoint: true,
+                    data: [
+                        @foreach($projecao as $dado)
+                            @define $mes = formata_mes($dado->mes);
+                            {{" { name: '$mes', y: $dado->valor }, "}}
+                        @endforeach
+                    ]
+                }]
+            });
+        });
+        </script>
+    </div>
+    {{-- VALORES PAGO POR MÊS (LINHA 4)--}}
+    <div class="col-md-12">
         <div class="row">
             <div class="col-md-6">
                 {{-- Exibe as oportunidades por operador--}}
