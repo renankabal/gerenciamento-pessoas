@@ -34,7 +34,7 @@
                             {{-- Se a parcela já tiver sido paga gera o comprovante de pagamento --}}
                             @if($parcela->parcela_finalizada)
                                 <a class="btn btn-default"  target="_blank" title="Emitir comprovante de pagamento" href="{{action('RelatoriosController@comprovante',$parcela->parcela_id)}}">
-                                    <i class="fa fa-check-square-o"></i>
+                                    <i class="fa fa-print"></i>
                                 </a>
                             @else
                                 <a type="button" href="{{ action('ParcelasController@efetuaPagamento', $parcela->parcela_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Efetuar pagamento">
