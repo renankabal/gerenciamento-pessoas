@@ -10,7 +10,7 @@
 
 <div class="page-header">
     <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#{{ $cliente->id }}"><i class="glyphicon glyphicon-remove"></i> Excluir</button>
-    <h2><i class="glyphicon glyphicon-user"></i> Cliente<small> Editar</small></h2>
+    <h2><i class="glyphicon glyphicon-user"></i> Pessoa<small> Editar</small></h2>
 </div>
 
 <form method="post" action="{{ action('ClientesController@update', $cliente->id) }}">
