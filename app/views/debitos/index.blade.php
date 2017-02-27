@@ -1,5 +1,7 @@
 @extends('template.layout')
 
+@include('debitos.relatorios')
+
 @section('content')
 
     <ol class="breadcrumb">
@@ -62,7 +64,7 @@
                             <a type="button" href="{{ action('DebitosController@lista_parcelas', $debito->debito_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar parcelas">
                                 <i class="fa fa-clone"></i>
                             </a>
-                            <a class="btn btn-default financeiro_relatorios" debito-id="{{ $debito->id }}"  debito-nome="{{ $debito->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Visualizar relatorios">
+                            <a class="btn btn-default visualizar_relatorios" debito-id="{{ $debito->id }}"  debito-nome="{{ $debito->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Visualizar relatorios">
                                 <i class="fa fa-search"></i>
                             </a>
                         </div>
@@ -79,7 +81,7 @@
 @stop
 {{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
 <script>
-    $(document).delegate('.financeiro_relatorios', 'click', function(e)
+    $(document).delegate('.visualizar_relatorios', 'click', function(e)
     {
         var pessoa_nome  = $(this).attr('debito-nome');
         var pessoa_id    = $(this).attr('debito-id');
