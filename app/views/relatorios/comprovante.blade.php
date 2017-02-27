@@ -4,7 +4,7 @@
     <tbody>
         <tr>
             <td colspan="2" align="center">
-                <img src="{{public_path('images/logo-sigep.png')}}"><br>
+                <img src="{{ asset('images/logo-sigep.png') }}"><br>
                 <b>NOME DA EMPRESA</b><br>
                 <b>SUBTITULO</b><br>
                 <b>CNPJ: 99.999.999/9999-99</b><br>

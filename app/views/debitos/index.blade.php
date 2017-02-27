@@ -1,7 +1,5 @@
 @extends('template.layout')
 
-@include('debitos.relatorios')
-
 @section('content')
 
     <ol class="breadcrumb">
@@ -64,8 +62,8 @@
                             <a type="button" href="{{ action('DebitosController@lista_parcelas', $debito->debito_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar parcelas">
                                 <i class="fa fa-clone"></i>
                             </a>
-                            <a class="btn btn-default visualizar_relatorios" debito-id="{{ $debito->id }}"  debito-nome="{{ $debito->nome }}" role="button" data-toggle="tooltip" data-placement="top" title="Visualizar relatorios">
-                                <i class="fa fa-search"></i>
+                            <a type="button" href="{{ action('RelatoriosController@carne_avulso', $debito->debito_id) }}" target="_blank" class="btn btn-default" role="button" data-toggle="tooltip" data-placement="top" title="Imprimir carnê">
+                                <i class="fa fa-print"></i>
                             </a>
                         </div>
                     </td>
@@ -81,30 +79,5 @@
 @stop
 {{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
 <script>
-    $(document).delegate('.visualizar_relatorios', 'click', function(e)
-    {
-        var pessoa_nome  = $(this).attr('debito-nome');
-        var pessoa_id    = $(this).attr('debito-id');
-        $('#nomePessoa').remove();
-        
-        $('#pessoaNome').append('<span id="nomePessoa">'+pessoa_nome+'</span>');
-        $('[name=pessoaId]').val(pessoa_id);
-        
-        $("#relatoriosFinanceiro").modal().show();
 
-        e.preventDefault();
-    });
-
-    // Função exibir os relatórios do cadastro de matrículas
-    $(document).delegate('.relatorio_pessoa', 'click', function(e)
-    {
-        var pessoa_selecionada = $('[name=pessoaId]').val();
-        var link = $(this).attr('link');
-        window.open(link+pessoa_selecionada);
-    });
-
-    $(document).delegate('#form-pesquisa-limpar', 'click', function(e)
-    {
-        $('#busca').val("");
-    });
 </script>
