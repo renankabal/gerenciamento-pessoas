@@ -42,7 +42,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{ $errors->has('valor_parcela') ? 'has-error' : '' }}">
                         <label for="valor_parcela">Valor da parcela</label>
-                        <input type="valor_parcela" class="form-control monetario" value="{{ $parcela->valor_parcela }}" disabled="disabled">
+                        <input type="valor_parcela" class="form-control monetario" value="{{ formataMoeda($parcela->valor_parcela) }}" disabled="disabled">
                         {{ $errors->first('valor_parcela', '<span class="help-block">:message</span>') }}
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{ $errors->has('valor_pago') ? 'has-error' : '' }}">
                         <label for="valor_pago">Valor pago</label>
-                        <input type="valor_pago" class="form-control monetario" id="valor_pago" name="valor_pago" value="{{ Request::old('valor_pago', $parcela->valor_parcela) }}">
+                        <input type="valor_pago" class="form-control monetario" id="valor_pago" name="valor_pago" value="{{ Request::old('valor_pago', formataMoeda($parcela->valor_parcela)) }}">
                         {{ $errors->first('valor_pago', '<span class="help-block">:message</span>') }}
                     </div>
                 </div>

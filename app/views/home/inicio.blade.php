@@ -1,19 +1,17 @@
 @extends('template.layout')
 
 @section('content')
-
+{{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
 <div class="row">
     <div class="col-md-12">
         <h3 class="page-head-line">Inicio</h3>
     </div>
 </div>
-
 <div class="row">
-
-    <div class="col-md-6">
-        {{-- Botoes da primeira linha --}}
+    <div class="col-md-12">
+        {{-- ATALHOS (LINHA 1)--}}
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <a href="{{action('ClientesController@index')}}">
                     <div class="main-box mb-branco">
                         <img src="icones/grandes/user.png" width="50%">
@@ -21,7 +19,7 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <a href="{{action('DebitosController@index')}}">
                     <div class="main-box mb-branco">
                         <img src="icones/grandes/folder_full.png" width="50%">
@@ -29,10 +27,7 @@
                     </div>
                 </a>                
             </div>
-        </div>
-        {{-- Botoes da segunda linha --}}
-        <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <a href="{{action('UsuarioController@index')}}">
                     <div class="main-box mb-branco">
                         <img src="icones/grandes/lock.png" width="50%">
@@ -40,7 +35,7 @@
                     </div>
                 </a>
             </div>            
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <a href="{{ url('sair') }}">
                     <div class="main-box mb-branco">
                         <img src="icones/grandes/delete.png" width="50%">
@@ -50,38 +45,116 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        {{-- Grafico que exibe as oportunidades por operador --}}
-        <div id="container" style="height: 290px; margin: 0 auto"></div>
-        <table id="datatable" style="display:none;">
-            <tr>
-                <th></th>
-                <th>Feminino</th>
-                <th>Masculino</th>
-            </tr>
-            <tr>
-                <th></th>
-                @foreach($pessoas_sexo as $sexo)
-                    <td>{{ $sexo->total }}</td>
-                @endforeach
-            </tr>
-        </table>
-        {{-- Exibe as oportunidades por operador--}}
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <i class="fa fa-bell fa-fw"></i>Oportunidade por operador
-            </div>
+    {{-- VALORES PAGO POR MÊS (LINHA 2)--}}
+    <div class="col-md-12">
+        <div id="faturamento" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+        <script type="text/javascript">
+        $(document).ready(function ()
+        {
+            $('#faturamento').highcharts({
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Faturamento'
+                },
+                xAxis: {
+                    categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Faturamento em R$'
+                    }
+                },
+                credits:{
+                    enabled: false
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [{
+                    name: 'Mês/Ano',
+                    data: [{{ $quantidade_valores}}]
+                }]
+            });
+        });
+        </script>
+    </div>
+    {{-- VALORES PAGO POR MÊS (LINHA 3)--}}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                {{-- Exibe as oportunidades por operador--}}
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i>Relatórios
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group">
 
-            <div class="panel-body">
-                <div class="list-group">
-
+                        </div>
+                        {{-- <a href="#" class="btn btn-info btn-block">Ver detalhes</a> --}}
+                    </div>
                 </div>
-                <!-- /.list-group -->
-                <a href="#" class="btn btn-info btn-block">Ver detalhes</a>
             </div>
-
+            <div class="col-md-6">
+                <div id="associados" style="min-width: 155px; height: 250px; margin: 0 auto"></div>
+                <script type="text/javascript">
+                    $(document).ready(function ()
+                    {
+                        $('#associados').highcharts({
+                            chart: {
+                                type: 'pie',
+                                options3d: {
+                                    enabled: false,
+                                    alpha: 30,
+                                    beta: 0
+                                }
+                            },
+                            title: {
+                                text: 'Total de associados por gênero'
+                            },
+                            tooltip: {
+                                pointFormat: '<b>{series.name}:</b> {point.percentage:.1f}% - <b>Total de:</b> {point.y}'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    depth: 150,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b> - {point.percentage:.1f}%'
+                                    }
+                                }
+                            },
+                            credits:{
+                                enabled: false
+                            },
+                            series: [{
+                            name: 'Porcentagem',
+                            colorByPoint: true,
+                            data: [
+                            @foreach($pessoas_sexo as $sexo)
+                                @if($sexo->sexo == 'M')
+                                    @define $nome ="MASCULINO";
+                                @else
+                                    @define $nome ="FEMININO";
+                                @endif
+                                {{" { name: '$nome', y: $sexo->total }, "}}
+                            @endforeach
+                            ]
+                        }]
+                        });
+                    });
+                </script>
+            </div>
         </div>
     </div>
-
 </div>
 @stop

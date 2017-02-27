@@ -11,5 +11,6 @@
 {{ HTML::script('js/testa_senha.js') }}
 {{-- Biblioteca de graficos --}}
 {{ HTML::script('highcharts/highcharts.js') }}
+{{ HTML::script('highcharts/highcharts-3d.js') }}
 {{ HTML::script('highcharts/modules/data.js') }}
 {{ HTML::script('highcharts/modules/exporting.js') }}
