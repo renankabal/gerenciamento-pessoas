@@ -18,7 +18,7 @@ class Dependentes extends Migration {
             $table->string('nome', 150);
             $table->string('cpf')->unique();
             $table->date('data_nascimento');
-            $table->integer('telefone')->nullable();
+            $table->string('telefone');
             $table->string('profissao', 150)->nullable();
             $table->string('ocupacao', 150)->nullable();            
             $table->integer('cliente_id')->unsigned();
