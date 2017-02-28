@@ -249,7 +249,7 @@
                                             @empty
                                             <tr>
                                                 <td colspan="2">
-                                                    Não existem dependentes cadastrados para este cliente.
+                                                    Não existem dependentes cadastrados para esta pessoa.
                                                 </td>
                                             </tr>
                                             @endforelse
