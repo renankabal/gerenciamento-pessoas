@@ -56,7 +56,7 @@
                     <td align="center">{{{ $debito->quantidade_parcelas }}}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a type="button" href="{{ action('DebitosController@edit', $debito->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
+                            <a type="button" href="{{ action('DebitosController@edit', $debito->debito_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
                                 <i class="fa fa-pencil-square-o"></i>
                             </a>
                             <a type="button" href="{{ action('DebitosController@lista_parcelas', $debito->debito_id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Visualizar parcelas">

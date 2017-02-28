@@ -112,7 +112,9 @@ class DebitosController extends \HelpersController {
      */
     public function edit($id)
     {
+        $debito = Debito::with('cliente')->find($id);
 
+        return View::make('debitos.edit', compact('debito'));
     }
 
     /**

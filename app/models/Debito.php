@@ -85,9 +85,9 @@ class Debito extends Eloquent {
         return $this->hasMany('Parcela');
     }
 
-    public function clientes()
+    public function cliente()
     {
-        return $this->hasOne('Cliente');
+        return $this->belongsTo('Cliente');
     }
 
 }
