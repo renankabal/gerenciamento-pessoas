@@ -68,7 +68,7 @@ return array(
 			'host'     => 'localhost',
 			'database' => 'sigep',
 			'username' => 'postgres',
-			'password' => '123456',
+			'password' => 'postgres',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 			'schema'   => 'public',

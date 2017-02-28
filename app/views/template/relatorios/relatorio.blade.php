@@ -7,7 +7,7 @@
             @show
         </title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <link type="text/css" rel="alternate" href="{{public_path('css/relatorio-pdf.css')}}" />
+        {{ HTML::style('css/relatorio-pdf.css')}}
         </head>
     </head>
     <body>
