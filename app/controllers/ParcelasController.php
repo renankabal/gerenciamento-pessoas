@@ -70,4 +70,17 @@ class ParcelasController extends \HelpersController {
 
         return Redirect::action('DebitosController@lista_parcelas', $debito_id)->with('mensagem', 'Pagamento realizado com sucesso.');
     }
+
+    public function cancelaPagamento($parcela_id)
+    {
+        $parcela = Parcela::find($parcela_id);
+
+        $parcela->valor_pago         = null;
+        $parcela->data_pagamento     = null;        
+        $parcela->parcela_finalizada = 'false';
+        $parcela->update();
+
+        return Redirect::action('DebitosController@lista_parcelas', $parcela->debito_id)->with('mensagem', 'Cancelamento realizado com sucesso.');
+    }
+
 }

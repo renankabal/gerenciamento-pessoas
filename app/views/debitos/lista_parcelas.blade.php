@@ -33,7 +33,10 @@
                         <div class="btn-group" role="group">
                             {{-- Se a parcela já tiver sido paga gera o comprovante de pagamento --}}
                             @if($parcela->parcela_finalizada)
-                                <a class="btn btn-default"  target="_blank" title="Emitir comprovante de pagamento" href="{{action('RelatoriosController@comprovante',$parcela->parcela_id)}}">
+                                <a class="btn btn-default" title="Cancelar pagamento" href="{{action('ParcelasController@cancelaPagamento',$parcela->parcela_id)}}">
+                                    <i class="fa fa-undo"></i>
+                                </a>
+                                <a class="btn btn-default" target="_blank" title="Emitir comprovante de pagamento" href="{{action('RelatoriosController@comprovante',$parcela->parcela_id)}}">
                                     <i class="fa fa-print"></i>
                                 </a>
                             @else

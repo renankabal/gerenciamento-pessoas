@@ -47,15 +47,13 @@ Route::group(array('before' => 'auth'), function()
 	    // ROTAS PARA PAGAMENTO
 	    Route::get('/parcelas/{cliente_id}/pagamento', 'ParcelasController@efetuaPagamento');
 	    Route::post('/parcelas/{cliente_id}/pagamento', 'ParcelasController@storePagamento');
+	    Route::get('/parcelas/{parcela_id}/cancelaPagamento', 'ParcelasController@cancelaPagamento');
 	    
 
 	    // RELATÓRIOS DO SISTEMA
 	    Route::get('/carteirinha/{cliente_id}', 'RelatoriosController@carteirinha');
 		Route::get('/carne_avulso/{debito_id}', 'RelatoriosController@carne_avulso');
 		Route::get('/comprovante/{parcela_id}', 'RelatoriosController@comprovante');
-
-		// ROTAS DE EXCLUSÃO
-	    Route::get('/debitos/{debito_id}/delete', 'DebitosController@destroyDebitoParcelas');
 	});
 
 	// ROTAS DO ADMINISTRADOR
