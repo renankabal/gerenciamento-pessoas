@@ -16,6 +16,16 @@ class DependenteTipoTableSeeder extends Seeder {
         DependenteTipo::create(array('nome' => 'Pai'));
         DependenteTipo::create(array('nome' => 'Mãe'));
         DependenteTipo::create(array('nome' => 'Dependente'));
+        DependenteTipo::create(array('nome' => 'Tio(a)'));
+        DependenteTipo::create(array('nome' => 'Irmão(ã)'));
+        DependenteTipo::create(array('nome' => 'Avô'));
+        DependenteTipo::create(array('nome' => 'Avó'));
+        DependenteTipo::create(array('nome' => 'Primo(a)'));
+        DependenteTipo::create(array('nome' => 'Sobrinho(a)'));
+        DependenteTipo::create(array('nome' => 'Sogro(a)'));
+        DependenteTipo::create(array('nome' => 'Genro(a)'));
+        DependenteTipo::create(array('nome' => 'Neto(a)'));
+        DependenteTipo::create(array('nome' => 'Cunhado(a)'));
 	}
 
 }
