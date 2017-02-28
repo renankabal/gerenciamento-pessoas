@@ -27,50 +27,66 @@
                 {{ $errors->first('cliente_id', '<span class="help-block">:message</span>') }}
             </div>
 
-            <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
-                <label for="nome">Tipo de dependente</label>
-                <select class="form-control" id="dependente_tipo_id" name="dependente_tipo_id" value="{{ Request::old('dependente_tipo_id') }}">
-                    @foreach ($dependenteTipo as $nome => $id)
-                    <option value="{{ $id }}" {{ $dependente->dependenteTipo->id == $id ? 'selected' : '' }}>{{ $nome }}</option>
-                    @endforeach
-                </select>
-                {{ $errors->first('dependente_tipo_id', '<span class="help-block">:message</span>') }}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
+                        <label for="nome">Tipo de dependente</label>
+                        <select class="form-control" id="dependente_tipo_id" name="dependente_tipo_id" value="{{ Request::old('dependente_tipo_id') }}">
+                            @foreach ($dependenteTipo as $nome => $id)
+                            <option value="{{ $id }}" {{ $dependente->dependenteTipo->id == $id ? 'selected' : '' }}>{{ $nome }}</option>
+                            @endforeach
+                        </select>
+                        {{ $errors->first('dependente_tipo_id', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
+                        <label for="nome">Nome do dependente</label>
+                        <input type="text" class="form-control uppercase" id="nome" name="nome" value="{{ $errors->has('nome') ? Request::old('nome') : $dependente->nome }}">
+                        {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
-                <label for="nome">Nome do dependente</label>
-                <input type="text" class="form-control" id="nome" name="nome" value="{{ $errors->has('nome') ? Request::old('nome') : $dependente->nome }}">
-                {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control cpf" id="cpf" name="cpf" value="{{ $errors->has('cpf') ? Request::old('cpf') : $dependente->cpf }}">
+                        {{ $errors->first('cpf', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('data_nascimento') ? 'has-error' : '' }}">
+                        <label for="data_nascimento">Data de nascimento</label>
+                        <input type="text" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ Request::old('data_nascimento', date('d/m/Y', strtotime($dependente->data_nascimento))) }}">
+                        {{ $errors->first('data_nascimento', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('profissao') ? 'has-error' : '' }}">
+                        <label for="profissao">Profissão</label>
+                        <input type="profissao" class="form-control uppercase" id="profissao" name="profissao" value="{{ $errors->has() ? Request::old('profissao') : $dependente->profissao }}">
+                        {{ $errors->first('profissao', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
-                <label for="cpf">CPF</label>
-                <input type="text" class="form-control cpf" id="cpf" name="cpf" value="{{ $errors->has('cpf') ? Request::old('cpf') : $dependente->cpf }}">
-                {{ $errors->first('cpf', '<span class="help-block">:message</span>') }}
-            </div>
-
-            <div class="form-group {{ $errors->has('data_nascimento') ? 'has-error' : '' }}">
-                <label for="data_nascimento">Data de nascimento</label>
-                <input type="text" class="form-control" id="data_nascimento" name="data_nascimento" value="{{ Request::old('data_nascimento', date('d/m/Y', strtotime($dependente->data_nascimento))) }}">
-                {{ $errors->first('data_nascimento', '<span class="help-block">:message</span>') }}
-            </div>
-
-            <div class="form-group {{ $errors->has('profissao') ? 'has-error' : '' }}">
-                <label for="profissao">Profissão</label>
-                <input type="profissao" class="form-control" id="profissao" name="profissao" value="{{ $errors->has() ? Request::old('profissao') : $dependente->profissao }}">
-                {{ $errors->first('profissao', '<span class="help-block">:message</span>') }}
-            </div>
-
-            <div class="form-group {{ $errors->has('ocupacao') ? 'has-error' : '' }}">
-                <label for="ocupacao">Ocupação</label>
-                <input type="text" class="form-control" id="ocupacao" name="ocupacao" value="{{ $errors->has() ? Request::old('ocupacao') : $dependente->ocupacao }}">
-                {{ $errors->first('ocupacao', '<span class="help-block">:message</span>') }}
-            </div>
-                
-            <div class="form-group {{ $errors->has('telefone') ? 'has-error' : '' }}">
-                <label for="telefone">Telefone</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ $errors->has() ? Request::old('telefone') : $dependente->telefone }}">
-                {{ $errors->first('telefone', '<span class="help-block">:message</span>') }}
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group {{ $errors->has('ocupacao') ? 'has-error' : '' }}">
+                        <label for="ocupacao">Ocupação</label>
+                        <input type="text" class="form-control uppercase" id="ocupacao" name="ocupacao" value="{{ $errors->has() ? Request::old('ocupacao') : $dependente->ocupacao }}">
+                        {{ $errors->first('ocupacao', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group {{ $errors->has('telefone') ? 'has-error' : '' }}">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control" id="telefone" name="telefone" value="{{ $errors->has() ? Request::old('telefone') : $dependente->telefone }}">
+                        {{ $errors->first('telefone', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
             </div>
         
             <div class="form-group btn-cadastro">                
@@ -78,15 +94,11 @@
                 <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-floppy-save"></i> Salvar</button>
                 <a class="btn btn-link" onclick="history.back()">Voltar</a>
             </div>
-
         </div>
-
     </div><!--row-->
-    
 </form>
 
 {{-- Modal de confirmação de exclusão --}}
-
 <div class="modal fade" id="{{ $dependente->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

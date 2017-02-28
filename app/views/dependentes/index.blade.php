@@ -62,12 +62,13 @@
                                 <a type="button" href="{{ action('DependentesController@edit', $dependente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
+                                <a class="btn btn-danger" title="Excluir este registro" href="{{action('DependentesController@destroy', $dependente->id)}}", title="Deseja excluir o dependente selecionado?">
+	                            	<i class="fa fa-trash-o"></i>
+	                            </a>
                             </div>
 						</td>
 					</tr>
-
 				@empty
-
 					<tr>
 						<td colspan="3">
 						    <div class="alert alert-warning" role="alert">
@@ -75,9 +76,7 @@
 						    </div>
 						</td>
 					</tr>
-
 				@endforelse
-
 				</tbody>
 			</table>
 		</div>
