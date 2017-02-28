@@ -41,14 +41,26 @@
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control cpf" id="cpf" name="cliente[cpf]" value="{{ Request::old('cpf') }}">
-                                {{ $errors->first('cpf', '<span class="help-block">:message</span>') }}
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group {{ $errors->has('cpf') ? 'has-error' : '' }}">
+                                        <label for="cpf">CPF</label>
+                                        <input type="text" class="form-control cpf" id="cpf" name="cliente[cpf]" value="{{ Request::old('cpf') }}">
+                                        {{ $errors->first('cpf', '<span class="help-block">:message</span>') }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group {{ $errors->has('data_nascimento') ? 'has-error' : '' }}">
+                                        <label for="data_nascimento">Data de nascimento</label>
+                                        <input type="text" class="form-control" id="data_nascimento" name="cliente[data_nascimento]" value="{{ Request::old('data_nascimento') }}">
+                                        {{ $errors->first('data_nascimento', '<span class="help-block">:message</span>') }}
+                                    </div>
+                                </div>
                             </div>
+                            
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <div class="form-group {{ $errors->has('rg') ? 'has-error' : '' }}">
                                         <label for="rg">RG</label>
                                         <input type="text" class="form-control" id="rg" name="cliente[rg]" value="{{ Request::old('rg') }}">
@@ -69,49 +81,50 @@
                                         {{ $errors->first('data_emissao', '<span class="help-block">:message</span>') }}
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-md-3">
+                                    <div class="form-group {{ $errors->has('sexo') ? 'has-error' : '' }}">
+                                        <label for="sexo">Sexo</label>
+                                        <select class="form-control" id="sexo" name="cliente[sexo]">
+                                            <option value="">Selecione</option>
+                                            <option value="M" {{ Request::old('sexo') == 'M' ? 'selected' : '' }}>Masculino</option>
+                                            <option value="F" {{ Request::old('sexo') == 'F' ? 'selected' : '' }}>Feminino</option>
+                                        </select>
+                                        {{ $errors->first('sexo', '<span class="help-block">:message</span>') }}
+                                    </div>
+                                </div>
+                            </div>                            
 
-                            <div class="form-group {{ $errors->has('data_nascimento') ? 'has-error' : '' }}">
-                                <label for="data_nascimento">Data de nascimento</label>
-                                <input type="text" class="form-control" id="data_nascimento" name="cliente[data_nascimento]" value="{{ Request::old('data_nascimento') }}">
-                                {{ $errors->first('data_nascimento', '<span class="help-block">:message</span>') }}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control lowercase" id="email" name="cliente[email]" value="{{ Request::old('email') }}">
+                                        {{ $errors->first('email', '<span class="help-block">:message</span>') }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group {{ $errors->has('profissao') ? 'has-error' : '' }}">
+                                        <label for="profissao">Profissão</label>
+                                        <input type="profissao" class="form-control uppercase" id="profissao" name="cliente[profissao]" value="{{ Request::old('profissao') }}">
+                                        {{ $errors->first('profissao', '<span class="help-block">:message</span>') }}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group {{ $errors->has('estado_civil') ? 'has-error' : '' }}">
+                                        <label for="estado_civil">Estado civil</label>
+                                        <select class="form-control" id="estado_civil" name="cliente[estado_civil]" value="{{ Request::old('estado_civil') }}">
+                                            <option value="">Selecione</option>
+                                            <option value="Solteiro" {{ Request::old('estado_civil') == 'Solteiro' ? 'selected' : '' }}>Solteiro</option>
+                                            <option value="Casado" {{ Request::old('estado_civil') == 'Casado' ? 'selected' : '' }}>Casado</option>
+                                            <option value="Separado" {{ Request::old('estado_civil') == 'Separado' ? 'selected' : '' }}>Separado</option>
+                                            <option value="Divorciado" {{ Request::old('estado_civil') == 'Divorciado' ? 'selected' : '' }}>Divorciado</option>
+                                            <option value="Viúvo" {{ Request::old('estado_civil') == 'Viúvo' ? 'selected' : '' }}>Viúvo</option>
+                                        </select>
+                                        {{ $errors->first('estado_civil', '<span class="help-block">:message</span>') }}
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="form-group {{ $errors->has('sexo') ? 'has-error' : '' }}">
-                                <label for="sexo">Sexo</label>
-                                <select class="form-control" id="sexo" name="cliente[sexo]">
-                                    <option value="">Selecione</option>
-                                    <option value="M" {{ Request::old('sexo') == 'M' ? 'selected' : '' }}>Masculino</option>
-                                    <option value="F" {{ Request::old('sexo') == 'F' ? 'selected' : '' }}>Feminino</option>
-                                </select>
-                                {{ $errors->first('sexo', '<span class="help-block">:message</span>') }}
-                            </div>
-
-                            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                                <label for="email">E-mail</label>
-                                <input type="email" class="form-control lowercase" id="email" name="cliente[email]" value="{{ Request::old('email') }}">
-                                {{ $errors->first('email', '<span class="help-block">:message</span>') }}
-                            </div>
-
-                            <div class="form-group {{ $errors->has('profissao') ? 'has-error' : '' }}">
-                                <label for="profissao">Profissão</label>
-                                <input type="profissao" class="form-control uppercase" id="profissao" name="cliente[profissao]" value="{{ Request::old('profissao') }}">
-                                {{ $errors->first('profissao', '<span class="help-block">:message</span>') }}
-                            </div>
-
-                            <div class="form-group {{ $errors->has('estado_civil') ? 'has-error' : '' }}">
-                                <label for="profissao">Estado civil</label>
-                                <select class="form-control" id="estado_civil" name="cliente[estado_civil]" value="{{ Request::old('estado_civil') }}">
-                                    <option value="">Selecione</option>
-                                    <option value="Solteiro" {{ Request::old('estado_civil') == 'Solteiro' ? 'selected' : '' }}>Solteiro</option>
-                                    <option value="Casado" {{ Request::old('estado_civil') == 'Casado' ? 'selected' : '' }}>Casado</option>
-                                    <option value="Separado" {{ Request::old('estado_civil') == 'Separado' ? 'selected' : '' }}>Separado</option>
-                                    <option value="Divorciado" {{ Request::old('estado_civil') == 'Divorciado' ? 'selected' : '' }}>Divorciado</option>
-                                    <option value="Viúvo" {{ Request::old('estado_civil') == 'Viúvo' ? 'selected' : '' }}>Viúvo</option>
-                                </select>
-                                {{ $errors->first('estado_civil', '<span class="help-block">:message</span>') }}
-                            </div>
-
+                            
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group {{ $errors->has('contato') ? 'has-error' : '' }}">
@@ -132,6 +145,15 @@
                                         {{ $errors->first('telefone_tipo_id', '<span class="help-block">:message</span>') }}
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group {{ $errors->has('ativo') ? 'has-error' : '' }}">
+                                <label for="ativo">Associado ativo?</label>
+                                <select class="form-control" id="ativo" name="cliente[ativo]" value="{{ Request::old('ativo') }}">
+                                    <option value=true>Sim</option>
+                                    <option value=false>Não</option>
+                                </select>
+                                {{ $errors->first('ativo', '<span class="help-block">:message</span>') }}
                             </div>
                         </div>
                     </div>

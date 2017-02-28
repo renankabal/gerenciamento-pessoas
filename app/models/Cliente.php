@@ -26,7 +26,8 @@ class Cliente extends Eloquent {
 		'sexo',
 		'email',
 		'profissao',
-		'estado_civil'
+		'estado_civil',
+		'ativo'
 		];
 
 	/*

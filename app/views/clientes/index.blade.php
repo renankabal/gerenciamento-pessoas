@@ -43,7 +43,8 @@
 				<thead>
                     <th width="5%">Matricula</th>
 					<th width="60%">Nome</th>
-					<th width="20%">CPF</th>
+					<th width="10%">CPF</th>
+                    <th width="5%">Status</th>
 					<th width="15%">Ações</th>
 				</thead>
 				<tbody>
@@ -52,6 +53,13 @@
                         <td>{{ $cliente->matricula }}</td>
 						<td>{{ $cliente->nome }}</td>
 						<td>{{ $cliente->cpf }}</td>
+                        <td>
+                            @if($cliente->ativo)
+                                <span class="label label-success">SIM</span>
+                            @else
+                                <span class="label label-danger">NÃO</span>
+                            @endif
+                        </td>
 						<td>
                             <div class="btn-group" role="group">
                                 <a type="button" href="{{ action('ClientesController@edit', $cliente->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">

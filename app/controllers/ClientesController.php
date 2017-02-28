@@ -116,13 +116,13 @@ class ClientesController extends \HelpersController {
 		$inputEnderecoCorresp = Input::get('endereco');
 		$inputTelefone = Input::get('telefone');
 
-		$inputs = array_merge_recursive($inputCliente, $inputEnderecoCorresp, $inputTelefone, $inputEnderecoCob);
+		$inputs = array_merge_recursive($inputCliente, $inputEnderecoCorresp, $inputTelefone);
 
 		$validatorCliente = Validator::make($inputCliente, $this->handleValidation(Cliente::$rules, $id));
 		$validatorEnderecoCorresp = Validator::make($inputEnderecoCorresp, EnderecoCorrespondencia::$rules);
 		$validatorTelefone = Validator::make($inputTelefone, Telefone::$rules);
 
-		if ($validatorCliente->fails() || $validatorEnderecoCorresp->fails() || $validatorTelefone->fails() || $validatorEnderecoCob->fails())
+		if ($validatorCliente->fails() || $validatorEnderecoCorresp->fails() || $validatorTelefone->fails())
 		{
 			# Mescla os arrays de erros
 			$errors = $validatorCliente->errors();
