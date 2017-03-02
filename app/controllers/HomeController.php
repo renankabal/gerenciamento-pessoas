@@ -38,7 +38,45 @@ class HomeController extends BaseController {
                                 WHERE parcela_finalizada=false and date_part('year', created_at) = 2017
                                 GROUP BY date_part('month', data_vencimento) ORDER BY mes");
 
-		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao'));
+        $events =   [
+                        '2017-03-11' => ['Aniversário'],
+                        '2017-03-09' => ['Event 3'],
+                        '2017-03-07' => ['nome' => 'Event 5'],
+                        '2017-03-15' => ['Event 6'],
+                        '2017-03-17' => ['Event 7'],
+                    ];
+        
+        $julius = Julius::make();//https://github.com/SUKOHI/Julius
+
+        $julius->setStartDate(\Request::get('base_date'))
+                ->showNavigation(true)
+                ->showDayOfWeek(true)
+                ->setMode(\Request::get('mode'))
+                // ->setHours('8:10', '18:20')
+                ->setClasses([
+                        'table' => 'table table-bordered', 
+                        'header' => 'table-header', 
+                        'time' => 'time', 
+                        'prev' => 'btn', 
+                        'next' => 'btn', 
+                        'day_label' => 'text-success',
+                        'today' => 'text-danger',
+                        'year_month' => 'text-center', 
+                        'day' => 'text-muted',
+                ])
+        ->setDayLabels(['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'])
+        ->setMonthLabels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'])
+        ->setInterval('+10 minutes')
+        ->setEvents($events, $callback = function($events, $start_dt, $end_dt){
+
+        $html = '<div>'. $start_dt->day .'</div>';
+        $html .= '<code>sasa</code>';
+
+        return $html;
+
+    });
+
+		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao', 'julius'));
 	}
 
 }

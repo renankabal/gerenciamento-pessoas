@@ -9,6 +9,12 @@
 </div>
 <div class="row">
     <div class="col-md-12">
+        {{-- CALENDÁRIO--}}
+        <div class="row">
+            <div class="col-md-12">
+                {{ $julius->generate() }}
+            </div>
+        </div>
         {{-- ATALHOS (LINHA 1)--}}
         <div class="row">
             <div class="col-md-3">
@@ -212,6 +218,7 @@
                 </script>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @stop

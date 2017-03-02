@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"thujohn/pdf": "^1.0"
+		"thujohn/pdf": "^1.0",
+		"sukohi/julius": "1.*"
 	},
 	"require-dev": {
 		"codeception/codeception": "*",

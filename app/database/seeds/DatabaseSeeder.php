@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('TelefoneTableSeeder');
 		$this->call('EnderecoCorrespondenciaTableSeeder');
 		$this->call('DependenteTableSeeder');
+		$this->call('EventosTableSeeder');		
 		$this->command->info('
 		**********************************************
 		*     Banco do SIGEP criado e povoado!       *
