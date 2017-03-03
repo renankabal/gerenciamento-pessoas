@@ -36,6 +36,7 @@ Route::group(array('before' => 'auth'), function()
 	    Route::resource('/usuarios', 'UsuarioController');
 	    Route::resource('/debitos', 'DebitosController');
 	    Route::resource('/parcelas', 'ParcelasController');
+	    Route::resource('/eventos', 'EventosController');
 
 	    // ADICIONA DEPENDENTES A PARTIR DE CLIENTE
 	    Route::get('/clientes/{cliente_id}/dependente', 'ClientesController@createDependente');

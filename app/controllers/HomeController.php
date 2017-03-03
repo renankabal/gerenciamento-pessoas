@@ -15,7 +15,6 @@ class HomeController extends BaseController {
             GROUP BY date_part('month', data_pagamento)
             ");
 
-
         $quantidade_valores = '';
         for ($i = 1; $i <= 12; $i++) {
             $faturou = 'nao';
@@ -38,14 +37,13 @@ class HomeController extends BaseController {
                                 WHERE parcela_finalizada=false and date_part('year', created_at) = 2017
                                 GROUP BY date_part('month', data_vencimento) ORDER BY mes");
 
-        $events =   [
-                        '2017-03-11' => ['Aniversário'],
-                        '2017-03-09' => ['Event 3'],
-                        '2017-03-07' => ['nome' => 'Event 5'],
-                        '2017-03-15' => ['Event 6'],
-                        '2017-03-17' => ['Event 7'],
-                    ];
-        
+        $eventos = Evento::select('nome', 'data_evento')->get();
+
+        $events = [];
+        foreach($eventos as $dado){
+            $events += [$dado->data_evento => $dado->nome];
+        }
+
         $julius = Julius::make();//https://github.com/SUKOHI/Julius
 
         $julius->setStartDate(\Request::get('base_date'))
@@ -70,7 +68,10 @@ class HomeController extends BaseController {
         ->setEvents($events, $callback = function($events, $start_dt, $end_dt){
 
         $html = '<div>'. $start_dt->day .'</div>';
-        $html .= '<code>sasa</code>';
+
+        foreach($events as $evento){
+            $html .= '<code><span style="font-size:10px;">'.$evento.'</span></code>';
+        }
 
         return $html;
 

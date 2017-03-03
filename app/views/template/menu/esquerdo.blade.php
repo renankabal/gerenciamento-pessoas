@@ -49,7 +49,17 @@
                     </li>
                 </ul>
             </li>
+
             @if(Auth::user()->perfil_id == 1)
+            <li {{ (Request::is('*configuracoes*') ? 'class="active"' : '') }}>
+                <a href="#"><i class="fa fa-cogs"></i>Configuração <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a {{ (Request::is('*eventos*') ? 'class="active-menu"' : '') }} href="{{action('EventosController@index')}}"><i class="fa fa-calendar"></i>Eventos</a>
+                    </li>
+                </ul>
+            </li>
+
             <li>
                 <a href="#"><i class="fa fa-user"></i>Usuarios <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

@@ -26,7 +26,7 @@ class Evento extends Eloquent {
      * 
     */
     public static $rules = [
-        'nome'           => 'required|eventos',
+        'nome'           => 'required',
         'data_evento'    => 'required'
     ];
     /*
