@@ -47,9 +47,9 @@ class HomeController extends BaseController {
         foreach($eventos as $dado){
             if($dado->anual){
                 list($anoEvento, $mesEvento, $diaEvento) = explode("-",$dado->data_evento);
-                $events += [date('Y-').$mesEvento.'-'.$diaEvento => [$dado->nome, $dado->icone, $dado->id]];
+                $events += [date('Y-').$mesEvento.'-'.$diaEvento => [$dado->nome, $dado->icone, $dado->id, date('Y-').$mesEvento.'-'.$diaEvento]];
             }else{
-                $events += [$dado->data_evento => [$dado->nome, $dado->icone, $dado->id]];
+                $events += [$dado->data_evento => [$dado->nome, $dado->icone, $dado->id, $dado->data_evento]];
             }
         }
         // de($events);
@@ -76,7 +76,7 @@ class HomeController extends BaseController {
         $html = '<div>'. $start_dt->day .'</div>';
 
         foreach($events as $evento){
-            $html.='<a href="" target="_blank">';
+            $html.='<a href="#myModal" id="selecionaEvento" data-toggle="modal" data-evento="'.$evento[3].'">';
                 $html.='<i class="fa '.$evento[1].'"></i>  ';
                 $html.='<span style="font-size:10px;">'.$evento[0].'</span>';
             $html.='</a>';

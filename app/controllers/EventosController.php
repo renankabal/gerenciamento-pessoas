@@ -107,4 +107,22 @@ class EventosController extends \HelpersController {
         return Redirect::action('EventosController@index')->with('mensagem', 'Evento excluído com sucesso.');
     }
 
+    public function lista_eventos($data_evento) {
+        
+        if (Request::ajax()) {
+            $eventos = Evento::select('eventos.nome','eventos.descricao','eventos.data_evento','eventos.hora_evento',
+                                    'eventos_icones.nome as icone')
+                                ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id')
+                                ->where('data_evento', $data_evento)
+                                ->orderBy('eventos.nome', 'asc')
+                                ->get();
+            foreach($eventos as $evento){
+                $evento->data_evento = format_date($evento->data_evento);
+            }
+
+            $response['data'] = $eventos;
+
+            return Response::json($response);
+        }
+    }
 }

@@ -50,6 +50,8 @@ Route::group(array('before' => 'auth'), function()
 	    Route::post('/parcelas/{cliente_id}/pagamento', 'ParcelasController@storePagamento');
 	    Route::get('/parcelas/{parcela_id}/cancelaPagamento', 'ParcelasController@cancelaPagamento');
 	    
+	    // ROTAS DE EVENTOS
+	    Route::get('/eventos/lista_eventos/{data_evento}', 'EventosController@lista_eventos');
 
 	    // RELATÓRIOS DO SISTEMA
 	    Route::get('/carteirinha/{cliente_id}', 'RelatoriosController@carteirinha');

@@ -16,18 +16,6 @@
             </div>
         </div>
 
-        {{-- EXIBE EVENTOS --}}
-        <div id="exibeEventos">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-info alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
-                    </div>
-                </div>
-            </div>
-        </div>
-
         {{-- EXIBE EVENTOS DO DIA--}}
         <div class="row">
             <div class="col-md-12">
@@ -244,4 +232,64 @@
     </div>
     </div>
 </div>
+
+<!-- Modal de eventos -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Eventos do dia <b><span id="dataEvento"></span></b></h4>
+            </div>
+            <div class="modal-body">                
+                <div id="listaEventos"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @stop
+{{ HTML::script('template/assets/js/jquery-2.0.2.min.js') }}
+<script>
+    $(document).delegate('#selecionaEvento', 'click', function(event){
+        $('#exibeEventosDetalhados').remove();
+        $('#mostraDataEvento').remove();
+
+        var data_evento = $(this).attr('data-evento');
+
+        var data  = ($(this).attr('data-evento')).split("-");     
+        var dataEvento = '<span id="mostraDataEvento"><b>'+data[2]+'/'+data[1]+'/'+data[0]+'</b></span>'; 
+        $('#dataEvento').append(dataEvento);
+
+        
+        $.ajax({
+            url: '/home/eventos/lista_eventos/'+data_evento,
+            type: 'GET',
+            dataType: 'JSON',
+            data: {},
+        })
+        .done(function(retorno) {
+            // console.log(retorno);
+            if(retorno.data!=null){
+                htmlEventos  = '<div id="exibeEventosDetalhados">\
+                                    <table class="table table-bordered">';
+                $.each(retorno.data, function(index, val){
+                        htmlEventos += '<tr>\
+                                            <td width="5%" align="center"><i class="fa '+val.icone+'" style="font-size: 60px;"></i></td>\
+                                            <td width="95%">'
+                                                +val.nome+'<br>\
+                                                Data: '+val.data_evento+'<br>\
+                                                Hora: '+val.hora_evento+'<br>\
+                                            </td>\
+                                        </tr>';
+                });
+                htmlEventos  +='    </table>\
+                                </div>';
+                $("#listaEventos").append(htmlEventos);            
+            }
+         });
+    });
+</script>

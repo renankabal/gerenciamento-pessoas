@@ -21,10 +21,21 @@
                 {{ $errors->first('nome', '<span class="help-block">:message</span>') }}
             </div>
 
-            <div class="form-group {{ $errors->has('data_evento') ? 'has-error' : '' }}">
-                <label for="data_evento">Data do evento</label>
-                <input type="text" class="form-control data" id="data_evento" name="data_evento" value="{{ Request::old('data_evento') }}">
-                {{ $errors->first('data_evento', '<span class="help-block">:message</span>') }}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group {{ $errors->has('data_evento') ? 'has-error' : '' }}">
+                        <label for="data_evento">Data do evento</label>
+                        <input type="text" class="form-control data" id="data_evento" name="data_evento" value="{{ Request::old('data_evento') }}">
+                        {{ $errors->first('data_evento', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group {{ $errors->has('hora_evento') ? 'has-error' : '' }}">
+                        <label for="hora_evento">Hora do evento</label>
+                        <input type="text" class="form-control hora" id="hora_evento" name="hora_evento" value="{{ Request::old('hora_evento') }}">
+                        {{ $errors->first('hora_evento', '<span class="help-block">:message</span>') }}
+                    </div>
+                </div>
             </div>
 
             <div class="form-group {{ $errors->has('anual') ? 'has-error' : '' }}">

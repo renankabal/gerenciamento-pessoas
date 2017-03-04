@@ -30,6 +30,8 @@ return array(
     'EnderecoCorrespondenciaTableSeeder' => $baseDir . '/app/database/seeds/EnderecoCorrespondenciaTableSeeder.php',
     'EnderecosCorrespondenciaCobranca' => $baseDir . '/app/database/migrations/2015_09_10_231351_enderecos_correspondencia_cobranca.php',
     'Evento' => $baseDir . '/app/models/Evento.php',
+    'EventoIcone' => $baseDir . '/app/models/EventoIcone.php',
+    'EventoIconeTableSeeder' => $baseDir . '/app/database/seeds/EventoIconeTableSeeder.php',
     'EventosController' => $baseDir . '/app/controllers/EventosController.php',
     'EventosTableSeeder' => $baseDir . '/app/database/seeds/EventosTableSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

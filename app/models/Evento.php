@@ -18,6 +18,7 @@ class Evento extends Eloquent {
         'nome',
         'descricao',
         'data_evento',
+        'hora_evento',
         'evento_icone_id',
         'anual'
     ];
