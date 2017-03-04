@@ -3,6 +3,14 @@
 class HomeController extends BaseController {
 
 	public function home(){
+        $dia_atual = date('Y-m-d');
+
+        $eventos_hoje = Evento::select('eventos.id', 'eventos.data_evento', 'eventos.hora_evento',
+                                        'eventos.nome', 'eventos.anual','eventos_icones.nome as icone')
+                                ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id')
+                                ->where('eventos.data_evento', $dia_atual)
+                                ->get();
+
         $pessoas_sexo = DB::select('select count(sexo) as total, sexo from clientes GROUP BY sexo');
 
         $faturamentos_valores = DB::select("
@@ -86,7 +94,7 @@ class HomeController extends BaseController {
 
     });
 
-		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao', 'julius'));
+		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao', 'julius', 'eventos_hoje'));
 	}
 
 }

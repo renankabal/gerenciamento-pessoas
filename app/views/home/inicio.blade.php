@@ -17,14 +17,18 @@
         </div>
 
         {{-- EXIBE EVENTOS DO DIA--}}
+        @foreach($eventos_hoje as $eventoHoje)
         <div class="row">
             <div class="col-md-12">
-                <div class="bs-callout bs-callout-info" id="callout-alerts-dismiss-plugin">
-                    <span class="fonte-alerta">Eventos do dia</span>
-                    <p>Descrição do evento aqui neste espaço</p>
+                <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <b>{{{ $eventoHoje->nome }}}</b> hoje ás {{{ $eventoHoje->hora_evento }}}.
                 </div>
             </div>
         </div>
+        @endforeach
 
         {{-- ATALHOS (LINHA 1)--}}
         <div class="row">
