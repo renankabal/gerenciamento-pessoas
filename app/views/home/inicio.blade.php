@@ -15,6 +15,29 @@
                 {{ $julius->generate() }}
             </div>
         </div>
+
+        {{-- EXIBE EVENTOS --}}
+        <div id="exibeEventos">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- EXIBE EVENTOS DO DIA--}}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bs-callout bs-callout-info" id="callout-alerts-dismiss-plugin">
+                    <span class="fonte-alerta">Eventos do dia</span>
+                    <p>Descrição do evento aqui neste espaço</p>
+                </div>
+            </div>
+        </div>
+
         {{-- ATALHOS (LINHA 1)--}}
         <div class="row">
             <div class="col-md-3">

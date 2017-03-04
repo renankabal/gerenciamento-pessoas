@@ -37,18 +37,22 @@ class HomeController extends BaseController {
                                 WHERE parcela_finalizada=false and date_part('year', created_at) = 2017
                                 GROUP BY date_part('month', data_vencimento) ORDER BY mes");
 
-        $eventos = Evento::get();
+        $eventos  = Evento::select('eventos.id', 'eventos.data_evento', 'eventos.nome', 'eventos.anual',
+                                    'eventos_icones.nome as icone')
+                    ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id')
+                    ->get();
+        // de($eventos->toArray());
 
         $events = [];
         foreach($eventos as $dado){
             if($dado->anual){
                 list($anoEvento, $mesEvento, $diaEvento) = explode("-",$dado->data_evento);
-                $events += [date('Y-').$mesEvento.'-'.$diaEvento => $dado->nome];
+                $events += [date('Y-').$mesEvento.'-'.$diaEvento => [$dado->nome, $dado->icone, $dado->id]];
             }else{
-                $events += [$dado->data_evento => $dado->nome];
+                $events += [$dado->data_evento => [$dado->nome, $dado->icone, $dado->id]];
             }
         }
-
+        // de($events);
         $julius = Julius::make();//https://github.com/SUKOHI/Julius | http://wrapbootstrap.com/preview/WB0573SK0
 
         $julius->setStartDate(\Request::get('base_date'))
@@ -67,15 +71,15 @@ class HomeController extends BaseController {
                         'year_month' => 'text-center', 
                         'day' => 'text-muted',
                 ])
-        ->setDayLabels(['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'])
-        ->setMonthLabels(['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'])
-        ->setInterval('+10 minutes')
         ->setEvents($events, $callback = function($events, $start_dt, $end_dt){
 
         $html = '<div>'. $start_dt->day .'</div>';
 
         foreach($events as $evento){
-            $html.='<span style="font-size:10px;">'.$evento.'</span>';
+            $html.='<a href="" target="_blank">';
+                $html.='<i class="fa '.$evento[1].'"></i>  ';
+                $html.='<span style="font-size:10px;">'.$evento[0].'</span>';
+            $html.='</a>';
         }
 
         return $html;

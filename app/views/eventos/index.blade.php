@@ -49,7 +49,7 @@
                 <tbody>
                 @foreach($eventos as $evento)
                 <tr> 
-                    <td>{{{ $evento->nome }}}</td>
+                    <td><i class="fa {{{ $evento->icone }}}"></i>   {{{ $evento->nome }}}</td>
                     <td>{{{ format_date($evento->data_evento) }}}</td>
                     <td>
                         @if($evento->anual)

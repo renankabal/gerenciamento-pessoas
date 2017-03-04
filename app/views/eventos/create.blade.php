@@ -30,10 +30,45 @@
             <div class="form-group {{ $errors->has('anual') ? 'has-error' : '' }}">
                 <label for="anual">Evento anual?</label>
                 <select class="form-control" id="anual" name="anual" value="{{ Request::old('anual') }}">
-                    <option value=true>Sim</option>
                     <option value=false>Não</option>
+                    <option value=true>Sim</option>
                 </select>
                 {{ $errors->first('anual', '<span class="help-block">:message</span>') }}
+            </div>
+
+            <div class="form-group {{ $errors->has('evento_icone_id') ? 'has-error' : '' }}">
+                <label>Selecione o ícone do evento</label>
+                <div class="btn-group btn-group-sm btn-group-justified" data-toggle="buttons">
+                    @foreach($icones as $icone)
+                    <label class="btn btn-default">
+                        <input type="radio" name="evento_icone_id" id="icon-1" value="{{{ $icone->id }}}" checked="">
+                        <i class="fa {{{ $icone->nome }}} text-muted"></i> </label>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Selecione a cor do evento</label>
+                <div class="btn-group btn-group-justified btn-select-tick" data-toggle="buttons">
+                    <label class="btn bg-color-darken active">
+                        <input type="radio" name="priority" id="option1" value="bg-color-darken txt-color-white" checked="">
+                        <i class="fa fa-check txt-color-white"></i> </label>
+                    <label class="btn bg-color-blue">
+                        <input type="radio" name="priority" id="option2" value="bg-color-blue txt-color-white">
+                        <i class="fa fa-check txt-color-white"></i> </label>
+                    <label class="btn bg-color-orange">
+                        <input type="radio" name="priority" id="option3" value="bg-color-orange txt-color-white">
+                        <i class="fa fa-check txt-color-white"></i> </label>
+                    <label class="btn bg-color-greenLight">
+                        <input type="radio" name="priority" id="option4" value="bg-color-greenLight txt-color-white">
+                        <i class="fa fa-check txt-color-white"></i> </label>
+                    <label class="btn bg-color-blueLight">
+                        <input type="radio" name="priority" id="option5" value="bg-color-blueLight txt-color-white">
+                        <i class="fa fa-check txt-color-white"></i> </label>
+                    <label class="btn bg-color-red">
+                        <input type="radio" name="priority" id="option6" value="bg-color-red txt-color-white">
+                        <i class="fa fa-check txt-color-white"></i> </label>
+                </div>
             </div>
         </div>
 
@@ -44,9 +79,6 @@
                 <a class="btn btn-default" onclick="history.back()">Voltar</a>
             </div>
         </div>
-
-    </div>
-    
+    </div>    
 </form>
-
 @stop

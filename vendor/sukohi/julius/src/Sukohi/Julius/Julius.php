@@ -14,7 +14,7 @@ class Julius {
 	private $mode = 'month';
 	private $interval = '+30 minutes';
 	private $hours, $events = [];
-	private $day_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	private $day_labels = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 	private $classes = [
 				'table' => '', 
 				'header' => '', 
@@ -30,7 +30,7 @@ class Julius {
 				'day' => ['', ''], 
 				'date' => ['', '']
 			];
-	private $month_labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	private $month_labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 	private $icons = ['prev' => '&lt;', 'next' => '&gt;'];
 	private $date_formats = [
                 'year_month' => 'm Y',

@@ -11,11 +11,13 @@ class EventosController extends \HelpersController {
     {
         $busca = Input::get('busca');
 
-        $eventos = Evento::select('*');
+        $eventos = Evento::select('eventos.nome', 'eventos.id', 'eventos.data_evento','eventos.anual',
+                                'eventos_icones.nome as icone')
+                            ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id');
         
-        if($busca){ $eventos = $eventos->where('nome', 'ilike', "%".$busca."%"); }
+        if($busca){ $eventos = $eventos->where('eventos.nome', 'ilike', "%".$busca."%"); }
 
-        $eventos = $eventos->orderBy('nome');
+        $eventos = $eventos->orderBy('eventos.nome');
         $eventos = $eventos->paginate(10);
 
         return View::make('eventos.index', compact('eventos'));
@@ -27,7 +29,8 @@ class EventosController extends \HelpersController {
      */
     public function create()
     {
-        return View::make('eventos.create');
+        $icones = EventoIcone::all();
+        return View::make('eventos.create', compact('icones'));
     }
 
     /**
