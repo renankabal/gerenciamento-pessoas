@@ -66,6 +66,8 @@ $(function(){
 			 }
 	});
 
+	$('.hora').mask('00:00');
+
 	$('.uppercase').keyup(function(){
         $(this).val($(this).val().toUpperCase());
     });
