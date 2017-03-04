@@ -57,30 +57,6 @@
                     @endforeach
                 </div>
             </div>
-
-            <div class="form-group">
-                <label>Selecione a cor do evento</label>
-                <div class="btn-group btn-group-justified btn-select-tick" data-toggle="buttons">
-                    <label class="btn bg-color-darken active">
-                        <input type="radio" name="priority" id="option1" value="bg-color-darken txt-color-white" checked="">
-                        <i class="fa fa-check txt-color-white"></i> </label>
-                    <label class="btn bg-color-blue">
-                        <input type="radio" name="priority" id="option2" value="bg-color-blue txt-color-white">
-                        <i class="fa fa-check txt-color-white"></i> </label>
-                    <label class="btn bg-color-orange">
-                        <input type="radio" name="priority" id="option3" value="bg-color-orange txt-color-white">
-                        <i class="fa fa-check txt-color-white"></i> </label>
-                    <label class="btn bg-color-greenLight">
-                        <input type="radio" name="priority" id="option4" value="bg-color-greenLight txt-color-white">
-                        <i class="fa fa-check txt-color-white"></i> </label>
-                    <label class="btn bg-color-blueLight">
-                        <input type="radio" name="priority" id="option5" value="bg-color-blueLight txt-color-white">
-                        <i class="fa fa-check txt-color-white"></i> </label>
-                    <label class="btn bg-color-red">
-                        <input type="radio" name="priority" id="option6" value="bg-color-red txt-color-white">
-                        <i class="fa fa-check txt-color-white"></i> </label>
-                </div>
-            </div>
         </div>
 
         <div class="col-md-12">

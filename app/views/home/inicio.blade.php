@@ -11,24 +11,24 @@
     <div class="col-md-12">
         {{-- CALENDÁRIO--}}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 {{ $julius->generate() }}
             </div>
-        </div>
 
-        {{-- EXIBE EVENTOS DO DIA--}}
-        @foreach($eventos_hoje as $eventoHoje)
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-warning alert-dismissible fade in" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <b>{{{ $eventoHoje->nome }}}</b> hoje ás {{{ $eventoHoje->hora_evento }}}.
+            {{-- EXIBE EVENTOS DO DIA--}}
+            <div class="col-md-4">
+                <div class="alert alert-success alert-dismissible fade in" role="alert" style="margin-bottom: 3px;padding: 3px;">
+                    <center>Eventos de hoje</center>
+                </div>
+                <div style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+                    @foreach($eventosHoje as $key => $evento_hoje)
+                        <div class="alert alert-info alert-dismissible fade in" role="alert" style="margin-bottom: 3px;">
+                            <i class="fa {{{ $evento_hoje['icone'] }}}" style="font-size: 30px;"></i> <b>{{{ $evento_hoje['nome'] }}}</b> hoje ás {{{ formata_hora($evento_hoje['hora_evento']) }}}.
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-        @endforeach
 
         {{-- ATALHOS (LINHA 1)--}}
         <div class="row">
@@ -276,7 +276,7 @@
             data: {},
         })
         .done(function(retorno) {
-            // console.log(retorno);
+            console.log(retorno);
             if(retorno.data!=null){
                 htmlEventos  = '<div id="exibeEventosDetalhados">\
                                     <table class="table table-bordered">';

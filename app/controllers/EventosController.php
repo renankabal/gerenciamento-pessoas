@@ -17,7 +17,7 @@ class EventosController extends \HelpersController {
         
         if($busca){ $eventos = $eventos->where('eventos.nome', 'ilike', "%".$busca."%"); }
 
-        $eventos = $eventos->orderBy('eventos.nome');
+        $eventos = $eventos->orderBy('eventos.created_at', 'desc');
         $eventos = $eventos->paginate(10);
 
         return View::make('eventos.index', compact('eventos'));
@@ -66,7 +66,9 @@ class EventosController extends \HelpersController {
     public function edit($id)
     {
         $evento = Evento::find($id);
-        return View::make('eventos.edit', compact('evento'));
+        $icones = EventoIcone::all();
+
+        return View::make('eventos.edit', compact('evento', 'icones'));
     }
 
     /**
@@ -87,7 +89,12 @@ class EventosController extends \HelpersController {
         {
             return Redirect::action('EventosController@edit', $id)->withErrors($validator)->withInput();
         }
-
+        //Manipula a data para ser inserida no banco na forma correta
+        $evento['nome']            = $input['nome'];
+        $evento['evento_icone_id'] = $input['evento_icone_id'];
+        $evento['data_evento']     = $this->handleDate($input['data_evento']);
+        $evento['hora_evento']     = $input['hora_evento'];
+        $evento['anual']           = $input['anual'];
         $evento->update();
 
         return Redirect::action('EventosController@index')->with('mensagem', 'Evento atualizado com sucesso.');
@@ -109,7 +116,7 @@ class EventosController extends \HelpersController {
 
     public function lista_eventos($data_evento) {
         
-        if (Request::ajax()) {
+        // if (Request::ajax()) {
             $eventos = Evento::select('eventos.nome','eventos.descricao','eventos.data_evento','eventos.hora_evento',
                                     'eventos_icones.nome as icone')
                                 ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id')
@@ -118,11 +125,12 @@ class EventosController extends \HelpersController {
                                 ->get();
             foreach($eventos as $evento){
                 $evento->data_evento = format_date($evento->data_evento);
+                $evento->hora_evento = isset($evento->hora_evento) ? formata_hora($evento->hora_evento) : '--:--';
             }
 
             $response['data'] = $eventos;
 
             return Response::json($response);
-        }
+        // }
     }
 }

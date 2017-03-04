@@ -80,3 +80,14 @@ function formata_mes($mes = null) {
 
     return $mes;
 }
+
+/**
+ * Formata hora
+ */
+if (!function_exists('formata_hora')) {
+    function formata_hora($valor) {
+        list($hora, $minuto, $segundo) = explode(":", $valor);
+        $valor = $hora.':'.$minuto;
+        return $valor;
+    }
+}
