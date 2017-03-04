@@ -51,7 +51,7 @@
             </li>
 
             @if(Auth::user()->perfil_id == 1)
-            <li {{ (Request::is('*configuracoes*') ? 'class="active"' : '') }}>
+            <li {{ (Request::is('*eventos*') ? 'class="active"' : '') }}>
                 <a href="#"><i class="fa fa-cogs"></i>Configuração <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

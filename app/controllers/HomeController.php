@@ -37,20 +37,25 @@ class HomeController extends BaseController {
                                 WHERE parcela_finalizada=false and date_part('year', created_at) = 2017
                                 GROUP BY date_part('month', data_vencimento) ORDER BY mes");
 
-        $eventos = Evento::select('nome', 'data_evento')->get();
+        $eventos = Evento::get();
 
         $events = [];
         foreach($eventos as $dado){
-            $events += [$dado->data_evento => $dado->nome];
+            if($dado->anual){
+                list($anoEvento, $mesEvento, $diaEvento) = explode("-",$dado->data_evento);
+                $events += [date('Y-').$mesEvento.'-'.$diaEvento => $dado->nome];
+            }else{
+                $events += [$dado->data_evento => $dado->nome];
+            }
         }
 
-        $julius = Julius::make();//https://github.com/SUKOHI/Julius
+        $julius = Julius::make();//https://github.com/SUKOHI/Julius | http://wrapbootstrap.com/preview/WB0573SK0
 
         $julius->setStartDate(\Request::get('base_date'))
                 ->showNavigation(true)
                 ->showDayOfWeek(true)
                 ->setMode(\Request::get('mode'))
-                // ->setHours('8:10', '18:20')
+                ->setHours('8:10', '18:20')
                 ->setClasses([
                         'table' => 'table table-bordered', 
                         'header' => 'table-header', 
@@ -70,7 +75,7 @@ class HomeController extends BaseController {
         $html = '<div>'. $start_dt->day .'</div>';
 
         foreach($events as $evento){
-            $html .= '<code><span style="font-size:10px;">'.$evento.'</span></code>';
+            $html.='<span style="font-size:10px;">'.$evento.'</span>';
         }
 
         return $html;

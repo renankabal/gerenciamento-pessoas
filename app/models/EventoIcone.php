@@ -1,13 +1,13 @@
 <?php
 
-class Evento extends Eloquent {
+class EventoIcone extends Eloquent {
 
     /**
      * Tabela usada pela model no banco
      *
      * @var string
      */
-    protected $table = 'eventos';
+    protected $table = 'eventos_icones';
 
     /*
      *
@@ -15,10 +15,7 @@ class Evento extends Eloquent {
      * http://laravel.com/docs/4.2/eloquent#mass-assignment
     */
     protected $fillable = [
-        'nome',
-        'descricao',
-        'data_evento',
-        'anual'
+        'nome'
     ];
 
     /*
@@ -27,16 +24,16 @@ class Evento extends Eloquent {
      * 
     */
     public static $rules = [
-        'nome'           => 'required',
-        'data_evento'    => 'required'
+        'nome'           => 'required'
     ];
     /*
      *
      * relacionamento do Eloquent ORM
      * 
     */
-    public function eventoIcone()
+    public function debito()
     {
-        return $this->belongsTo('EventoIcone');
+        return $this->hasOne('Evento');
     }
+
 }

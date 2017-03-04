@@ -18,6 +18,14 @@ class CriaCalendario extends Migration {
             $table->string('nome', 255);
             $table->text('descricao')->nullable();
             $table->date('data_evento');
+            $table->boolean('anual')->default(false);
+            $table->timestamps();
+        });
+
+        Schema::create('eventos_icones', function($table)
+        {
+            $table->increments('id');
+            $table->string('nome', 50);
             $table->timestamps();
         });
 	}
@@ -29,7 +37,8 @@ class CriaCalendario extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('eventos');
+		Schema::drop('eventos_icones');
+        Schema::drop('eventos');
 	}
 
 }

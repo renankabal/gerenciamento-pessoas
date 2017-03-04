@@ -27,6 +27,14 @@
                 {{ $errors->first('data_evento', '<span class="help-block">:message</span>') }}
             </div>
 
+            <div class="form-group {{ $errors->has('anual') ? 'has-error' : '' }}">
+                <label for="anual">Evento anual?</label>
+                <select class="form-control" id="anual" name="anual" value="{{ Request::old('anual') }}">
+                    <option value=true>Sim</option>
+                    <option value=false>Não</option>
+                </select>
+                {{ $errors->first('anual', '<span class="help-block">:message</span>') }}
+            </div>
         </div>
 
         <div class="col-md-12">

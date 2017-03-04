@@ -43,6 +43,7 @@
                 <thead>
                     <th>Evento</th>
                     <th>Data do evento</th>
+                    <th>Evento anual</th>
                     <th>Ações</th>
                 </thead>
                 <tbody>
@@ -50,6 +51,13 @@
                 <tr> 
                     <td>{{{ $evento->nome }}}</td>
                     <td>{{{ format_date($evento->data_evento) }}}</td>
+                    <td>
+                        @if($evento->anual)
+                            <span class="label label-success">SIM</span>
+                        @else
+                            <span class="label label-danger">NÃO</span>
+                        @endif
+                    </td>
                     <td>
                         <div class="btn-group" role="group">
                             <a type="button" href="{{ action('EventosController@edit', $evento->id) }}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Editar">
