@@ -25,6 +25,7 @@ class CriaCalendario extends Migration {
             $table->string('nome', 255);
             $table->text('descricao')->nullable();
             $table->date('data_evento');
+            $table->time('hora_evento')->nullable();
             $table->boolean('anual')->default(false);
             $table->integer('evento_icone_id')->unsigned()->default(1);
             $table->foreign('evento_icone_id')->references('id')->on('eventos_icones');
