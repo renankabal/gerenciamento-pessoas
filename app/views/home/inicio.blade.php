@@ -16,6 +16,7 @@
             </div>
 
             {{-- EXIBE EVENTOS DO DIA--}}
+            @if(!empty($eventosHoje))
             <div class="col-md-4">
                 <div class="alert alert-success alert-dismissible fade in" role="alert" style="margin-bottom: 3px;padding: 3px;">
                     <center>Eventos de hoje</center>
@@ -28,6 +29,7 @@
                     @endforeach
                 </div>
             </div>
+            @endif
         </div>
 
         {{-- ATALHOS (LINHA 1)--}}
