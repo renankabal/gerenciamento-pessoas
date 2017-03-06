@@ -17,18 +17,35 @@
 
             {{-- EXIBE EVENTOS DO DIA--}}
             @if(!empty($eventosHoje))
-            <div class="col-md-4">
-                <div class="alert alert-success alert-dismissible fade in" role="alert" style="margin-bottom: 3px;padding: 3px;">
-                    <center>Eventos de hoje</center>
+                <div class="col-md-4">
+                    <div class="alert alert-success alert-dismissible fade in" role="alert" style="margin-bottom: 3px;padding: 3px;">
+                        <center>Eventos de hoje</center>
+                    </div>
+                    <div style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
+                        @foreach($eventosHoje as $key => $evento_hoje)
+                            <div class="alert alert-info alert-dismissible fade in" role="alert" style="margin-bottom: 3px;">
+                                <i class="fa {{{ $evento_hoje['icone'] }}}" style="font-size: 30px;"></i> <b>{{{ $evento_hoje['nome'] }}}</b> hoje ás {{{ formata_hora($evento_hoje['hora_evento']) }}}.
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <div style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
-                    @foreach($eventosHoje as $key => $evento_hoje)
-                        <div class="alert alert-info alert-dismissible fade in" role="alert" style="margin-bottom: 3px;">
-                            <i class="fa {{{ $evento_hoje['icone'] }}}" style="font-size: 30px;"></i> <b>{{{ $evento_hoje['nome'] }}}</b> hoje ás {{{ formata_hora($evento_hoje['hora_evento']) }}}.
-                        </div>
-                    @endforeach
+            @else
+                <div class="col-md-4">
+                    <div class="alert alert-success alert-dismissible fade in" role="alert" style="margin-bottom: 3px;padding: 3px;">
+                        <center>Eventos de hoje</center>
+                    </div>
+                    <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                        <center>
+                            <i class="fa fa-calendar-o" style="font-size:100px;"></i><br>
+                            Nenhum evento para hoje!<br>
+                            <div class="btn-group" role="group">
+                                <a type="button" href="{{ action('EventosController@create') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="" data-original-title="Criar evento">
+                                    <i class="fa fa fa-plus"></i> criar evento
+                                </a>                       
+                            </div>
+                        </center>
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
 

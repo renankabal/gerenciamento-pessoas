@@ -19,7 +19,7 @@ class EventoIconeTableSeeder extends Seeder {
         EventoIcone::create(['nome'  => 'fa fa-lock']);
         EventoIcone::create(['nome'  => 'fa-clock-o']);
         EventoIcone::create(['nome'  => 'fa-birthday-cake']);
-        // EventoIcone::create(['nome'  => 'xxxx']);
+        EventoIcone::create(['nome'  => 'fa-flag']);
         // EventoIcone::create(['nome'  => 'xxxx']);
         // EventoIcone::create(['nome'  => 'xxxx']);
         // EventoIcone::create(['nome'  => 'xxxx']);
