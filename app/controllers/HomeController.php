@@ -6,7 +6,8 @@ class HomeController extends BaseController {
         $dataHoje   = date('Y-m-d');
 
         $eventos_avisos = Evento::select('eventos.id', 'eventos.data_evento', 'eventos.hora_evento',
-                                        'eventos.nome', 'eventos.anual','eventos_icones.nome as icone')
+                                        'eventos.nome', 'eventos.anual','eventos_icones.nome as icone',
+                                        DB::raw("to_char(eventos.data_evento, 'mm-dd') as niver"))
                                 ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id')
                                 ->where(DB::raw("date_part('month', eventos.data_evento)"), date('m'))
                                 ->orderBy('eventos.hora_evento')
@@ -14,7 +15,7 @@ class HomeController extends BaseController {
         // de($eventos_avisos->toArray());
 
         foreach($eventos_avisos as $eventosAvisos){
-            if($eventosAvisos->data_evento == $dataHoje){
+            if($eventosAvisos->data_evento == $dataHoje || $eventosAvisos->niver == date('m-d')){
                 $eventosHoje[] = [
                                 'nome'        => $eventosAvisos->nome ,
                                 'hora_evento' => $eventosAvisos->hora_evento,
