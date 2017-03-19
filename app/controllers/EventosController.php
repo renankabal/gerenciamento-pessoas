@@ -52,6 +52,11 @@ class EventosController extends \HelpersController {
         $evento = new Evento($input);
         //Manipula a data para ser inserida no banco na forma correta
         $evento['data_evento'] = $this->handleDate($input['data_evento']);
+        
+        if(empty(Input::get('hora_evento'))){
+            $evento['hora_evento'] = null;
+        }
+        
         $evento->save();
 
         return Redirect::action('EventosController@index')->with('mensagem', 'Evento cadastrado com sucesso!');
@@ -93,7 +98,11 @@ class EventosController extends \HelpersController {
         $evento['nome']            = $input['nome'];
         $evento['evento_icone_id'] = $input['evento_icone_id'];
         $evento['data_evento']     = $this->handleDate($input['data_evento']);
-        $evento['hora_evento']     = $input['hora_evento'];
+        if(empty(Input::get('hora_evento'))){
+            $evento['hora_evento'] = null;
+        }else{
+            $evento['hora_evento']     = $input['hora_evento'];
+        }
         $evento['anual']           = $input['anual'];
         $evento->update();
 
@@ -116,13 +125,17 @@ class EventosController extends \HelpersController {
 
     public function lista_eventos($data_evento) {
         
-        // if (Request::ajax()) {
+        if (Request::ajax()) {
+            list($anoEvento, $mesEvento, $diaEvento) = explode("-", $data_evento);
             $eventos = Evento::select('eventos.nome','eventos.descricao','eventos.data_evento','eventos.hora_evento',
                                     'eventos_icones.nome as icone')
                                 ->leftJoin('eventos_icones', 'eventos_icones.id', '=', 'eventos.evento_icone_id')
-                                ->where('data_evento', $data_evento)
+                                ->where(DB::raw("date_part('day', eventos.data_evento)"), $diaEvento)
+                                ->where(DB::raw("date_part('month', eventos.data_evento)"), $mesEvento)
+                                ->where(DB::raw("date_part('year', eventos.data_evento)"), $anoEvento)
                                 ->orderBy('eventos.nome', 'asc')
                                 ->get();
+
             foreach($eventos as $evento){
                 $evento->data_evento = format_date($evento->data_evento);
                 $evento->hora_evento = isset($evento->hora_evento) ? formata_hora($evento->hora_evento) : '--:--';
@@ -131,6 +144,6 @@ class EventosController extends \HelpersController {
             $response['data'] = $eventos;
 
             return Response::json($response);
-        // }
+        }
     }
 }
