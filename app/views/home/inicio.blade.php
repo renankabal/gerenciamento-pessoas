@@ -24,7 +24,10 @@
                     <div style="height: 300px;overflow-y: scroll;overflow-x: hidden;">
                         @foreach($eventosHoje as $key => $evento_hoje)
                             <div class="alert alert-info alert-dismissible fade in" role="alert" style="margin-bottom: 3px;">
-                                <i class="fa {{{ $evento_hoje['icone'] }}}" style="font-size: 30px;"></i> <b>{{{ $evento_hoje['nome'] }}}</b> hoje ás {{{ formata_hora($evento_hoje['hora_evento']) }}}.
+                                <i class="fa {{{ $evento_hoje['icone'] }}}" style="font-size: 30px;"></i> <b>{{{ $evento_hoje['nome'] }}}</b>
+                                @if($evento_hoje['hora_evento'])
+                                    hoje ás {{ formata_hora($evento_hoje['hora_evento'])}}.
+                                @endif
                             </div>
                         @endforeach
                     </div>
