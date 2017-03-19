@@ -34,7 +34,7 @@
                 <div class="col-md-6">
                     <div class="form-group {{ $errors->has('hora_evento') ? 'has-error' : '' }}">
                         <label for="hora_evento">Hora do evento</label>
-                        <input type="text" class="form-control hora" id="hora_evento" name="hora_evento" value="{{ formata_hora($evento->hora_evento) }}">
+                        <input type="text" class="form-control hora" id="hora_evento" name="hora_evento" value="{{ $evento->hora_evento ? formata_hora($evento->hora_evento) : '' }}">
                         {{ $errors->first('hora_evento', '<span class="help-block">:message</span>') }}
                     </div>
                 </div>
