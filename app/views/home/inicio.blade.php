@@ -30,6 +30,12 @@
                                 @endif
                             </div>
                         @endforeach
+                        {{-- Lista os aniversário das pessoas cadastradas --}}
+                        @foreach($aniversarios as $aniversario)
+                            <div class="alert alert-info alert-dismissible fade in" role="alert" style="margin-bottom: 3px;">
+                                <i class="fa fa-birthday-cake" style="font-size: 30px;"></i> <b>Aniversário de</b> {{{ $aniversario->nome }}}
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             @else

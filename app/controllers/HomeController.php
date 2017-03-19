@@ -5,6 +5,10 @@ class HomeController extends BaseController {
 	public function home(){
         $dataHoje   = date('Y-m-d');
 
+        $aniversarios   = Cliente::where(DB::raw("date_part('month', data_nascimento)"), date('m'))
+                                   ->where(DB::raw("date_part('day', data_nascimento)"), date('d'))
+                                   ->get();
+
         $eventos_avisos = Evento::select('eventos.id', 'eventos.data_evento', 'eventos.hora_evento',
                                         'eventos.nome', 'eventos.anual','eventos_icones.nome as icone',
                                         DB::raw("to_char(eventos.data_evento, 'mm-dd') as niver"))
@@ -108,7 +112,7 @@ class HomeController extends BaseController {
 
     });
 
-		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao', 'julius', 'eventosHoje'));
+		return View::make('home.inicio', compact('quantidade_valores', 'pessoas_sexo', 'projecao', 'julius', 'eventosHoje', 'aniversarios'));
 	}
 
 }
